@@ -55,7 +55,6 @@ public class MainUI {
 
 	private JFrame frame;
 	private JTable table;
-	private JTable table_1;
 	private JTable table_2;
 	private JTable table_3;
 	private JTable table_4;
@@ -77,6 +76,9 @@ public class MainUI {
 	private JTable table_11;
 	private JTable table_12;
 	private final ButtonGroup buttonGroup_7 = new ButtonGroup();
+	private JTable table_1;
+	private JTextField textField;
+	private JTable table_13;
 
 	/**
 	 * Launch the application.
@@ -501,51 +503,66 @@ public class MainUI {
 		table_11.setBounds(399, 16, 0, 0);
 		panel_5.add(table_11);
 		
-		JPanel panel_installedSoftware = new JPanel();
-		panel_installedSoftware.setLayout(null);
-		panel_installedSoftware.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		tabbedPane.addTab("Installed Software", null, panel_installedSoftware, null);
+		JPanel panel_misc = new JPanel();
+		panel_misc.setLayout(null);
+		panel_misc.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		tabbedPane.addTab("Misc", null, panel_misc, null);
 		
-		JLabel label = new JLabel("Password Policy");
-		label.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label.setBounds(10, 11, 108, 14);
-		panel_installedSoftware.add(label);
+		JLabel lblPolicy_1 = new JLabel("Policy");
+		lblPolicy_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblPolicy_1.setBounds(10, 11, 108, 14);
+		panel_misc.add(lblPolicy_1);
 		
 		JLabel label_1 = new JLabel("Value");
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_1.setBounds(213, 11, 46, 14);
-		panel_installedSoftware.add(label_1);
+		label_1.setBounds(274, 11, 46, 14);
+		panel_misc.add(label_1);
 		
 		JLabel label_2 = new JLabel("Scoring");
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_2.setBounds(415, 11, 46, 14);
-		panel_installedSoftware.add(label_2);
+		panel_misc.add(label_2);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
 		panel_2.setBounds(10, 36, 514, 35);
-		panel_installedSoftware.add(panel_2);
+		panel_misc.add(panel_2);
 		
-		JLabel label_3 = new JLabel("Enforce [policy]");
-		label_3.setBounds(10, 8, 95, 18);
-		panel_2.add(label_3);
+		JLabel lblNoFilesOf = new JLabel("No Files of Specifed Type");
+		lblNoFilesOf.setBounds(10, 8, 219, 18);
+		panel_2.add(lblNoFilesOf);
 		
 		JCheckBox checkBox = new JCheckBox("Scoring");
 		checkBox.setBounds(399, 6, 95, 23);
 		panel_2.add(checkBox);
 		
-		JRadioButton radioButton = new JRadioButton("Enabled");
-		radioButton.setBounds(141, 6, 99, 23);
-		panel_2.add(radioButton);
-		
-		JRadioButton radioButton_1 = new JRadioButton("Disabled");
-		radioButton_1.setBounds(242, 6, 95, 23);
-		panel_2.add(radioButton_1);
-		
 		table_1 = new JTable();
 		table_1.setBackground(SystemColor.menu);
 		table_1.setBounds(399, 16, 0, 0);
 		panel_2.add(table_1);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(239, 7, 86, 20);
+		panel_2.add(textField);
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setLayout(null);
+		panel_7.setBounds(10, 82, 514, 35);
+		panel_misc.add(panel_7);
+		
+		JLabel lblCheckForMalicious = new JLabel("Check for Malicious Software: nmap, johntheripper, torrent clients...");
+		lblCheckForMalicious.setBounds(10, 8, 389, 18);
+		panel_7.add(lblCheckForMalicious);
+		
+		JCheckBox checkBox_12 = new JCheckBox("Scoring");
+		checkBox_12.setBounds(399, 6, 95, 23);
+		panel_7.add(checkBox_12);
+		
+		table_13 = new JTable();
+		table_13.setBackground(SystemColor.menu);
+		table_13.setBounds(399, 16, 0, 0);
+		panel_7.add(table_13);
 		
 		
 		
