@@ -75,6 +75,8 @@ public class MainUI {
 	private JTable table_10;
 	private JTextField textField_system;
 	private JTable table_11;
+	private JTable table_12;
+	private final ButtonGroup buttonGroup_7 = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -350,6 +352,34 @@ public class MainUI {
 		table_8.setBackground(SystemColor.menu);
 		table_8.setBounds(399, 16, 0, 0);
 		panel_dns.add(table_8);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setLayout(null);
+		panel_6.setBounds(10, 186, 514, 35);
+		panel_services.add(panel_6);
+		
+		JLabel lblNetcatBackdoors = new JLabel("Netcat Backdoor Check");
+		lblNetcatBackdoors.setBounds(10, 8, 125, 18);
+		panel_6.add(lblNetcatBackdoors);
+		
+		JCheckBox checkBox_11 = new JCheckBox("Scoring");
+		checkBox_11.setBounds(399, 6, 95, 23);
+		panel_6.add(checkBox_11);
+		
+		JRadioButton radioButton_18 = new JRadioButton("Enabled");
+		buttonGroup_7.add(radioButton_18);
+		radioButton_18.setBounds(141, 6, 99, 23);
+		panel_6.add(radioButton_18);
+		
+		JRadioButton radioButton_19 = new JRadioButton("Disabled");
+		buttonGroup_7.add(radioButton_19);
+		radioButton_19.setBounds(242, 6, 95, 23);
+		panel_6.add(radioButton_19);
+		
+		table_12 = new JTable();
+		table_12.setBackground(SystemColor.menu);
+		table_12.setBounds(399, 16, 0, 0);
+		panel_6.add(table_12);
 		
 		JPanel panel_localPolicy = new JPanel();
 		panel_localPolicy.setLayout(null);
