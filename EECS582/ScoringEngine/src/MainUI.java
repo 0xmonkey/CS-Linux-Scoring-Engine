@@ -1,6 +1,7 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -9,19 +10,26 @@ import javax.swing.JPanel;
 import java.awt.Color;
 
 import javax.swing.JMenuBar;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JTabbedPane;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+
 import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
-
 import javax.swing.JRadioButton;
 
 import java.awt.SystemColor;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+
 import javax.swing.JCheckBox;
 import javax.swing.border.BevelBorder;
 import javax.swing.JTextField;
@@ -574,7 +582,53 @@ public class MainUI {
 				}
 				
 				System.out.println("Scored?: " + object.ssh_service_sc + " Setting: " + object.ssh_service_setting);
+				pythonCall();
 			}
 		});
+	}
+	/**
+	 * Mid Layer Section
+	 */
+	private static String path = "./string_script_task.py";
+	private static String python = "python3";
+	private static ResultHolder resultHolder;
+	private final static ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+	public static void checkServicesLin(int s_type, String pname) {
+		try {
+			String pythonScriptPath = path; // need installer to determine locations
+			String cmd = new String();
+			cmd = python + " "; // check version of installed python and what bash command to use (python, py, python3)
+			cmd += pythonScriptPath + " " + s_type + " " + pname;
+		 
+			// create runtime to execute external command
+			Runtime rt = Runtime.getRuntime();
+			Process pr = rt.exec(cmd);
+		 
+			// retrieve output from python script
+			BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+			String line = "";
+			line = bfr.readLine();
+			resultHolder = new ResultHolder(line);
+			System.out.println("SSH Status: " + resultHolder.getStatusSSH());
+//			while((line = bfr.readLine()) != null) {
+//			// display each output line form python script
+//				resultHolder = new ResultHolder(line);
+//				System.out.println("SSH Status: " + resultHolder.getStatusSSH());
+//			}
+		} catch (IOException err) {
+			System.out.println(err.getMessage());
+		}
+	}
+	public static void pythonCall() {
+		final Runnable pythonCaller = new Runnable() {
+			public void run() { 
+				pythonCallManual();
+			}
+		};
+		//Set interval to call script
+		final ScheduledFuture<?> pythonCallerHandle = scheduler.scheduleAtFixedRate(pythonCaller, -1, 30, TimeUnit.SECONDS);
+	}
+	public static void pythonCallManual() {
+		checkServicesLin(1, "sshd");
 	}
 }
