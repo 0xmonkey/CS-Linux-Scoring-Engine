@@ -555,25 +555,25 @@ public class MainUI {
 		mntmSaveSettingsAnd.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent ae){
-				currentSettings ojbect = new currentSettings();
+				currentSettings object = new currentSettings();
 				
 				/**
 				 * check ssh service check
 				 */
 				if(ssh_service_en.isSelected() && ssh_service_scoring.isSelected()){
-					ojbect.ssh_service_sc = 1;
-					ojbect.ssh_service_setting = "enabled";
+					object.ssh_service_sc = 1;
+					object.ssh_service_setting = "enabled";
 				}
 				else if(!ssh_service_en.isSelected() && ssh_service_scoring.isSelected()){
-					ojbect.ssh_service_sc = 1;
-					ojbect.ssh_service_setting = "disabled";
+					object.ssh_service_sc = 1;
+					object.ssh_service_setting = "disabled";
 				}
 				else{
-					ojbect.ssh_service_sc = -1;
-					ojbect.ssh_service_setting = "null";
+					object.ssh_service_sc = -1;
+					object.ssh_service_setting = "null";
 				}
 				
-				System.out.println("Scored?: " + ojbect.ssh_service_sc + " Setting: " + ojbect.ssh_service_setting);
+				System.out.println("Scored?: " + object.ssh_service_sc + " Setting: " + object.ssh_service_setting);
 			}
 		});
 	}
