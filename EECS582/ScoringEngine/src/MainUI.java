@@ -47,7 +47,7 @@ public class MainUI {
 	private JTable table_7;
 	private JTable table_8;
 	private JTable table_9;
-	private JTextField textField_sudo;
+	private JTextField rm_sudo_usr_textBox;
 	private final ButtonGroup ssh_anon_login_group = new ButtonGroup();
 	private final ButtonGroup ssh_v_2_group = new ButtonGroup();
 	private final ButtonGroup buttonGroup_2 = new ButtonGroup();
@@ -56,12 +56,12 @@ public class MainUI {
 	private final ButtonGroup buttonGroup_5 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_6 = new ButtonGroup();
 	private JTable table_10;
-	private JTextField textField_system;
+	private JTextField rm_usr_textBox;
 	private JTable table_11;
 	private JTable table_12;
 	private final ButtonGroup buttonGroup_7 = new ButtonGroup();
 	private JTable table_1;
-	private JTextField textField;
+	private JTextField no_files_textBox;
 	private JTable table_13;
 
 	/**
@@ -141,7 +141,7 @@ public class MainUI {
 		ssh_service.add(ssh_service_en);
 		ssh_service_group.add(ssh_service_en);
 		
-		JRadioButton ssh_service_dis = new JRadioButton("Disabled");
+		final JRadioButton ssh_service_dis = new JRadioButton("Disabled");
 		ssh_service_dis.setBounds(242, 6, 95, 23);
 		ssh_service.add(ssh_service_dis);
 		ssh_service_group.add(ssh_service_dis);
@@ -160,16 +160,16 @@ public class MainUI {
 		lblAnonymousLogin.setBounds(10, 8, 125, 18);
 		anon_login.add(lblAnonymousLogin);
 		
-		JCheckBox anon_login_scoring = new JCheckBox("Scoring");
+		final JCheckBox anon_login_scoring = new JCheckBox("Scoring");
 		anon_login_scoring.setBounds(399, 6, 95, 23);
 		anon_login.add(anon_login_scoring);
 		
-		JRadioButton anon_login_en = new JRadioButton("Enabled");
+		final JRadioButton anon_login_en = new JRadioButton("Enabled");
 		ssh_anon_login_group.add(anon_login_en);
 		anon_login_en.setBounds(141, 6, 99, 23);
 		anon_login.add(anon_login_en);
 		
-		JRadioButton anon_login_dis = new JRadioButton("Disabled");
+		final JRadioButton anon_login_dis = new JRadioButton("Disabled");
 		ssh_anon_login_group.add(anon_login_dis);
 		anon_login_dis.setBounds(242, 6, 95, 23);
 		anon_login.add(anon_login_dis);
@@ -188,16 +188,16 @@ public class MainUI {
 		version_2.setBounds(10, 8, 125, 18);
 		panel.add(version_2);
 		
-		JCheckBox ssh_v2_scoring = new JCheckBox("Scoring");
+		final JCheckBox ssh_v2_scoring = new JCheckBox("Scoring");
 		ssh_v2_scoring.setBounds(399, 6, 95, 23);
 		panel.add(ssh_v2_scoring);
 		
-		JRadioButton ssh_v_2_en = new JRadioButton("Enabled");
+		final JRadioButton ssh_v_2_en = new JRadioButton("Enabled");
 		ssh_v_2_group.add(ssh_v_2_en);
 		ssh_v_2_en.setBounds(141, 6, 99, 23);
 		panel.add(ssh_v_2_en);
 		
-		JRadioButton ssh_v_2_dis = new JRadioButton("Disabled");
+		final JRadioButton ssh_v_2_dis = new JRadioButton("Disabled");
 		ssh_v_2_group.add(ssh_v_2_dis);
 		ssh_v_2_dis.setBounds(242, 6, 95, 23);
 		panel.add(ssh_v_2_dis);
@@ -236,19 +236,19 @@ public class MainUI {
 		lblFtpService.setBounds(10, 8, 95, 18);
 		panel_ftp.add(lblFtpService);
 		
-		JCheckBox checkBox_2 = new JCheckBox("Scoring");
-		checkBox_2.setBounds(399, 6, 95, 23);
-		panel_ftp.add(checkBox_2);
+		final JCheckBox ftp_scoring = new JCheckBox("Scoring");
+		ftp_scoring.setBounds(399, 6, 95, 23);
+		panel_ftp.add(ftp_scoring);
 		
-		JRadioButton radioButton_4 = new JRadioButton("Enabled");
-		buttonGroup_2.add(radioButton_4);
-		radioButton_4.setBounds(141, 6, 99, 23);
-		panel_ftp.add(radioButton_4);
+		final JRadioButton ftp_en = new JRadioButton("Enabled");
+		buttonGroup_2.add(ftp_en);
+		ftp_en.setBounds(141, 6, 99, 23);
+		panel_ftp.add(ftp_en);
 		
-		JRadioButton radioButton_5 = new JRadioButton("Disabled");
-		buttonGroup_2.add(radioButton_5);
-		radioButton_5.setBounds(242, 6, 95, 23);
-		panel_ftp.add(radioButton_5);
+		final JRadioButton ftp_dis = new JRadioButton("Disabled");
+		buttonGroup_2.add(ftp_dis);
+		ftp_dis.setBounds(242, 6, 95, 23);
+		panel_ftp.add(ftp_dis);
 		
 		table_3 = new JTable();
 		table_3.setBackground(SystemColor.menu);
@@ -264,19 +264,19 @@ public class MainUI {
 		lblSqlService.setBounds(10, 8, 95, 18);
 		panel_sql.add(lblSqlService);
 		
-		JCheckBox checkBox_5 = new JCheckBox("Scoring");
-		checkBox_5.setBounds(399, 6, 95, 23);
-		panel_sql.add(checkBox_5);
+		final JCheckBox sql_scoring = new JCheckBox("Scoring");
+		sql_scoring.setBounds(399, 6, 95, 23);
+		panel_sql.add(sql_scoring);
 		
-		JRadioButton radioButton_10 = new JRadioButton("Enabled");
-		buttonGroup_3.add(radioButton_10);
-		radioButton_10.setBounds(141, 6, 99, 23);
-		panel_sql.add(radioButton_10);
+		final JRadioButton sql_en = new JRadioButton("Enabled");
+		buttonGroup_3.add(sql_en);
+		sql_en.setBounds(141, 6, 99, 23);
+		panel_sql.add(sql_en);
 		
-		JRadioButton radioButton_11 = new JRadioButton("Disabled");
-		buttonGroup_3.add(radioButton_11);
-		radioButton_11.setBounds(242, 6, 95, 23);
-		panel_sql.add(radioButton_11);
+		JRadioButton sql_dis = new JRadioButton("Disabled");
+		buttonGroup_3.add(sql_dis);
+		sql_dis.setBounds(242, 6, 95, 23);
+		panel_sql.add(sql_dis);
 		
 		table_6 = new JTable();
 		table_6.setBackground(SystemColor.menu);
@@ -292,19 +292,19 @@ public class MainUI {
 		lblWwwService.setBounds(10, 8, 95, 18);
 		panel_www.add(lblWwwService);
 		
-		JCheckBox checkBox_6 = new JCheckBox("Scoring");
-		checkBox_6.setBounds(399, 6, 95, 23);
-		panel_www.add(checkBox_6);
+		final JCheckBox www_scoring = new JCheckBox("Scoring");
+		www_scoring.setBounds(399, 6, 95, 23);
+		panel_www.add(www_scoring);
 		
-		JRadioButton radioButton_12 = new JRadioButton("Enabled");
-		buttonGroup_4.add(radioButton_12);
-		radioButton_12.setBounds(141, 6, 99, 23);
-		panel_www.add(radioButton_12);
+		final JRadioButton www_en = new JRadioButton("Enabled");
+		buttonGroup_4.add(www_en);
+		www_en.setBounds(141, 6, 99, 23);
+		panel_www.add(www_en);
 		
-		JRadioButton radioButton_13 = new JRadioButton("Disabled");
-		buttonGroup_4.add(radioButton_13);
-		radioButton_13.setBounds(242, 6, 95, 23);
-		panel_www.add(radioButton_13);
+		final JRadioButton www_dis = new JRadioButton("Disabled");
+		buttonGroup_4.add(www_dis);
+		www_dis.setBounds(242, 6, 95, 23);
+		panel_www.add(www_dis);
 		
 		table_7 = new JTable();
 		table_7.setBackground(SystemColor.menu);
@@ -320,19 +320,19 @@ public class MainUI {
 		lblDnsService.setBounds(10, 8, 95, 18);
 		panel_dns.add(lblDnsService);
 		
-		JCheckBox checkBox_7 = new JCheckBox("Scoring");
-		checkBox_7.setBounds(399, 6, 95, 23);
-		panel_dns.add(checkBox_7);
+		final JCheckBox dns_scoring = new JCheckBox("Scoring");
+		dns_scoring.setBounds(399, 6, 95, 23);
+		panel_dns.add(dns_scoring);
 		
-		JRadioButton radioButton_14 = new JRadioButton("Enabled");
-		buttonGroup_5.add(radioButton_14);
-		radioButton_14.setBounds(141, 6, 99, 23);
-		panel_dns.add(radioButton_14);
+		final JRadioButton dns_en = new JRadioButton("Enabled");
+		buttonGroup_5.add(dns_en);
+		dns_en.setBounds(141, 6, 99, 23);
+		panel_dns.add(dns_en);
 		
-		JRadioButton radioButton_15 = new JRadioButton("Disabled");
-		buttonGroup_5.add(radioButton_15);
-		radioButton_15.setBounds(242, 6, 95, 23);
-		panel_dns.add(radioButton_15);
+		final JRadioButton dns_dis = new JRadioButton("Disabled");
+		buttonGroup_5.add(dns_dis);
+		dns_dis.setBounds(242, 6, 95, 23);
+		panel_dns.add(dns_dis);
 		
 		table_8 = new JTable();
 		table_8.setBackground(SystemColor.menu);
@@ -348,19 +348,19 @@ public class MainUI {
 		lblNetcatBackdoors.setBounds(10, 8, 125, 18);
 		panel_6.add(lblNetcatBackdoors);
 		
-		JCheckBox checkBox_11 = new JCheckBox("Scoring");
-		checkBox_11.setBounds(399, 6, 95, 23);
-		panel_6.add(checkBox_11);
+		final JCheckBox netcat_scoring = new JCheckBox("Scoring");
+		netcat_scoring.setBounds(399, 6, 95, 23);
+		panel_6.add(netcat_scoring);
 		
-		JRadioButton radioButton_18 = new JRadioButton("Enabled");
-		buttonGroup_7.add(radioButton_18);
-		radioButton_18.setBounds(141, 6, 99, 23);
-		panel_6.add(radioButton_18);
+		final JRadioButton netcat_en = new JRadioButton("Enabled");
+		buttonGroup_7.add(netcat_en);
+		netcat_en.setBounds(141, 6, 99, 23);
+		panel_6.add(netcat_en);
 		
-		JRadioButton radioButton_19 = new JRadioButton("Disabled");
-		buttonGroup_7.add(radioButton_19);
-		radioButton_19.setBounds(242, 6, 95, 23);
-		panel_6.add(radioButton_19);
+		final JRadioButton netcat_dis = new JRadioButton("Disabled");
+		buttonGroup_7.add(netcat_dis);
+		netcat_dis.setBounds(242, 6, 95, 23);
+		panel_6.add(netcat_dis);
 		
 		table_12 = new JTable();
 		table_12.setBackground(SystemColor.menu);
@@ -396,19 +396,19 @@ public class MainUI {
 		lblSudoUsersMust.setBounds(10, 8, 195, 18);
 		panel_3.add(lblSudoUsersMust);
 		
-		JCheckBox checkBox_1 = new JCheckBox("Scoring");
-		checkBox_1.setBounds(399, 6, 95, 23);
-		panel_3.add(checkBox_1);
+		final JCheckBox sudo_pw_scoring = new JCheckBox("Scoring");
+		sudo_pw_scoring.setBounds(399, 6, 95, 23);
+		panel_3.add(sudo_pw_scoring);
 		
-		JRadioButton radioButton_2 = new JRadioButton("Enabled");
-		buttonGroup_6.add(radioButton_2);
-		radioButton_2.setBounds(211, 6, 85, 23);
-		panel_3.add(radioButton_2);
+		final JRadioButton sudo_pw_en = new JRadioButton("Enabled");
+		buttonGroup_6.add(sudo_pw_en);
+		sudo_pw_en.setBounds(211, 6, 85, 23);
+		panel_3.add(sudo_pw_en);
 		
-		JRadioButton radioButton_3 = new JRadioButton("Disabled");
-		buttonGroup_6.add(radioButton_3);
-		radioButton_3.setBounds(298, 6, 78, 23);
-		panel_3.add(radioButton_3);
+		final JRadioButton sudo_pw_dis = new JRadioButton("Disabled");
+		buttonGroup_6.add(sudo_pw_dis);
+		sudo_pw_dis.setBounds(298, 6, 78, 23);
+		panel_3.add(sudo_pw_dis);
 		
 		table_2 = new JTable();
 		table_2.setBackground(SystemColor.menu);
@@ -424,19 +424,19 @@ public class MainUI {
 		lblUserToBe.setBounds(10, 8, 219, 18);
 		panel_1.add(lblUserToBe);
 		
-		JCheckBox checkBox_8 = new JCheckBox("Scoring");
-		checkBox_8.setBounds(399, 6, 95, 23);
-		panel_1.add(checkBox_8);
+		final JCheckBox rm_sudo_usr_scoring = new JCheckBox("Scoring");
+		rm_sudo_usr_scoring.setBounds(399, 6, 95, 23);
+		panel_1.add(rm_sudo_usr_scoring);
 		
 		table_9 = new JTable();
 		table_9.setBackground(SystemColor.menu);
 		table_9.setBounds(399, 16, 0, 0);
 		panel_1.add(table_9);
 		
-		textField_sudo = new JTextField();
-		textField_sudo.setBounds(239, 7, 86, 20);
-		panel_1.add(textField_sudo);
-		textField_sudo.setColumns(10);
+		rm_sudo_usr_textBox = new JTextField();
+		rm_sudo_usr_textBox.setBounds(239, 7, 86, 20);
+		panel_1.add(rm_sudo_usr_textBox);
+		rm_sudo_usr_textBox.setColumns(10);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
@@ -447,19 +447,19 @@ public class MainUI {
 		lblUserToBe_1.setBounds(10, 8, 219, 18);
 		panel_4.add(lblUserToBe_1);
 		
-		JCheckBox checkBox_9 = new JCheckBox("Scoring");
-		checkBox_9.setBounds(399, 6, 95, 23);
-		panel_4.add(checkBox_9);
+		final JCheckBox rm_usr_scoring = new JCheckBox("Scoring");
+		rm_usr_scoring.setBounds(399, 6, 95, 23);
+		panel_4.add(rm_usr_scoring);
 		
 		table_10 = new JTable();
 		table_10.setBackground(SystemColor.menu);
 		table_10.setBounds(399, 16, 0, 0);
 		panel_4.add(table_10);
 		
-		textField_system = new JTextField();
-		textField_system.setColumns(10);
-		textField_system.setBounds(239, 7, 86, 20);
-		panel_4.add(textField_system);
+		rm_usr_textBox = new JTextField();
+		rm_usr_textBox.setColumns(10);
+		rm_usr_textBox.setBounds(239, 7, 86, 20);
+		panel_4.add(rm_usr_textBox);
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setLayout(null);
@@ -470,17 +470,17 @@ public class MainUI {
 		lblEnsureAllUsers.setBounds(10, 8, 195, 18);
 		panel_5.add(lblEnsureAllUsers);
 		
-		JCheckBox checkBox_10 = new JCheckBox("Scoring");
-		checkBox_10.setBounds(399, 6, 95, 23);
-		panel_5.add(checkBox_10);
+		final JCheckBox all_usr_pass_scoring = new JCheckBox("Scoring");
+		all_usr_pass_scoring.setBounds(399, 6, 95, 23);
+		panel_5.add(all_usr_pass_scoring);
 		
-		JRadioButton radioButton_16 = new JRadioButton("Enabled");
-		radioButton_16.setBounds(211, 6, 85, 23);
-		panel_5.add(radioButton_16);
+		final JRadioButton all_usr_pass_en = new JRadioButton("Enabled");
+		all_usr_pass_en.setBounds(211, 6, 85, 23);
+		panel_5.add(all_usr_pass_en);
 		
-		JRadioButton radioButton_17 = new JRadioButton("Disabled");
-		radioButton_17.setBounds(298, 6, 78, 23);
-		panel_5.add(radioButton_17);
+		final JRadioButton all_usr_pass_dis = new JRadioButton("Disabled");
+		all_usr_pass_dis.setBounds(298, 6, 78, 23);
+		panel_5.add(all_usr_pass_dis);
 		
 		table_11 = new JTable();
 		table_11.setBackground(SystemColor.menu);
@@ -516,19 +516,19 @@ public class MainUI {
 		lblNoFilesOf.setBounds(10, 8, 219, 18);
 		panel_2.add(lblNoFilesOf);
 		
-		JCheckBox checkBox = new JCheckBox("Scoring");
-		checkBox.setBounds(399, 6, 95, 23);
-		panel_2.add(checkBox);
+		final JCheckBox no_files_scoring = new JCheckBox("Scoring");
+		no_files_scoring.setBounds(399, 6, 95, 23);
+		panel_2.add(no_files_scoring);
 		
 		table_1 = new JTable();
 		table_1.setBackground(SystemColor.menu);
 		table_1.setBounds(399, 16, 0, 0);
 		panel_2.add(table_1);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(239, 7, 86, 20);
-		panel_2.add(textField);
+		no_files_textBox = new JTextField();
+		no_files_textBox.setColumns(10);
+		no_files_textBox.setBounds(239, 7, 86, 20);
+		panel_2.add(no_files_textBox);
 		
 		JPanel panel_7 = new JPanel();
 		panel_7.setLayout(null);
@@ -539,9 +539,9 @@ public class MainUI {
 		lblCheckForMalicious.setBounds(10, 8, 389, 18);
 		panel_7.add(lblCheckForMalicious);
 		
-		JCheckBox checkBox_12 = new JCheckBox("Scoring");
-		checkBox_12.setBounds(399, 6, 95, 23);
-		panel_7.add(checkBox_12);
+		final JCheckBox mal_software_scoring = new JCheckBox("Scoring");
+		mal_software_scoring.setBounds(399, 6, 95, 23);
+		panel_7.add(mal_software_scoring);
 		
 		table_13 = new JTable();
 		table_13.setBackground(SystemColor.menu);
@@ -569,17 +569,234 @@ public class MainUI {
 				 * check ssh service check
 				 */
 				if(ssh_service_en.isSelected() && ssh_service_scoring.isSelected()){
-					object.ssh_service_sc = 1;
+					object.ssh_service_sc = true;
 					object.ssh_service_setting = "enabled";
 				}
-				else if(!ssh_service_en.isSelected() && ssh_service_scoring.isSelected()){
-					object.ssh_service_sc = 1;
+				else if(ssh_service_dis.isSelected() && ssh_service_scoring.isSelected()){
+					object.ssh_service_sc = true;
 					object.ssh_service_setting = "disabled";
 				}
 				else{
-					object.ssh_service_sc = -1;
+					object.ssh_service_sc = false;
 					object.ssh_service_setting = "null";
 				}
+				
+				/*
+				 * ssh v2 check
+				 */
+				if(ssh_v_2_en.isSelected() && ssh_v2_scoring.isSelected()){
+					object.ssh_v_2_sc = true;
+					object.ssh_v_2_setting = "enabled";
+				}
+				else if(ssh_v_2_dis.isSelected() && ssh_v2_scoring.isSelected()){
+					object.ssh_v_2_sc = true;
+					object.ssh_v_2_setting = "disabled";
+				}
+				else{
+					object.ssh_v_2_sc = false;
+					object.ssh_v_2_setting = "null";
+				}
+				
+				/*
+				 * ssh anon login check
+				 */
+				
+				if(anon_login_scoring.isSelected()){
+					object.anon_login_sc = true;
+					if(anon_login_en.isSelected()){
+						object.anon_login_setting = "enabled";
+					}
+					else if(anon_login_dis.isSelected()){
+						object.anon_login_setting = "disabled";
+					}
+				}
+				else{
+					object.anon_login_sc = false;
+					object.anon_login_setting = "null";
+				}
+				
+				/*
+				 * ftp service check
+				 */
+				
+				if(ftp_scoring.isSelected()){
+					object.ftp_service_sc = true;
+					if(ftp_en.isSelected()){
+						object.ftp_service_setting = "enabled";
+					}
+					else if(ftp_dis.isSelected()){
+						object.ftp_service_setting = "disabled";
+					}
+				}
+				else{
+					object.ftp_service_sc = false;
+					object.ftp_service_setting = "null";
+				}
+				
+				/*
+				 * sql service check
+				 */
+				
+				if(sql_scoring.isSelected()){
+					object.sql_service_sc = true;
+					if(sql_en.isSelected()){
+						object.sql_service_setting = "enabled";
+					}
+					else if(ftp_dis.isSelected()){
+						object.sql_service_setting = "disabled";
+					}
+				}
+				else{
+					object.sql_service_sc = false;
+					object.sql_service_setting = "null";
+				}
+				
+				/*
+				 * www service check
+				 */
+				
+				if(www_scoring.isSelected()){
+					object.www_service_sc = true;
+					if(www_en.isSelected()){
+						object.www_service_setting = "enabled";
+					}
+					else if(www_dis.isSelected()){
+						object.www_service_setting = "disabled";
+					}
+				}
+				else{
+					object.www_service_sc = false;
+					object.www_service_setting = "null";
+				}
+				
+				/*
+				 * dns service check
+				 */
+				
+				if(dns_scoring.isSelected()){
+					object.dns_service_sc = true;
+					if(dns_en.isSelected()){
+						object.dns_service_setting = "enabled";
+					}
+					else if(www_dis.isSelected()){
+						object.dns_service_setting = "disabled";
+					}
+				}
+				else{
+					object.dns_service_sc = false;
+					object.dns_service_setting = "null";
+				}
+				
+				/*
+				 * netcat service check
+				 */
+				
+				if(netcat_scoring.isSelected()){
+					object.netcat_backdoor_sc = true;
+					if(netcat_en.isSelected()){
+						object.netcat_backdoor_setting = "enabled";
+					}
+					else if(netcat_dis.isSelected()){
+						object.netcat_backdoor_setting = "disabled";
+					}
+				}
+				else{
+					object.netcat_backdoor_sc = false;
+					object.netcat_backdoor_setting = "null";
+				}
+				
+				/*
+				 * all sudo users must have passwords
+				 */
+				
+				if(sudo_pw_scoring.isSelected()){
+					object.sudo_pw_sc = true;
+					if(sudo_pw_en.isSelected()){
+						object.sudo_pw_setting = "enabled";
+					}
+					else if(sudo_pw_dis.isSelected()){
+						object.sudo_pw_setting = "disabled";
+					}
+				}
+				else{
+					object.sudo_pw_sc = false;
+					object.sudo_pw_setting = "null";
+				}
+				
+				/*
+				 * remove sudo user
+				 */
+				
+				if(rm_sudo_usr_scoring.isSelected()){
+					object.rm_sudo_usr_sc = true;
+					object.rm_sudo_usr_setting = rm_sudo_usr_textBox.getText();
+				}
+				else{
+					object.rm_sudo_usr_sc = false;
+					object.rm_sudo_usr_setting = "null";
+				}
+				
+				/*
+				 * remove user
+				 */
+				
+				if(rm_usr_scoring.isSelected()){
+					object.rm_usr_sc = true;
+					object.rm_usr_setting = rm_usr_textBox.getText();
+				}
+				else{
+					object.rm_usr_sc = false;
+					object.rm_usr_setting = "null";
+				}
+				
+				/*
+				 * ensure all users have passwords
+				 */
+				
+				if(all_usr_pass_scoring.isSelected()){
+					object.all_usr_pass_sc = true;
+					if(all_usr_pass_en.isSelected()){
+						object.all_usr_pass_setting = "enabled";
+					}
+					else if(all_usr_pass_dis.isSelected()){
+						object.all_usr_pass_setting = "disabled";
+					}
+				}
+				else{
+					object.all_usr_pass_sc = false;
+					object.all_usr_pass_setting = "null";
+				}
+				
+				/*
+				 * NO FILES OF SPECIFIED TYPE
+				 */
+				
+				if(no_files_scoring.isSelected()){
+					object.no_files_sc = true;
+					object.no_files_setting = no_files_textBox.getText();
+				}
+				else{
+					object.no_files_sc = false;
+					object.no_files_setting = "null";
+				}
+				
+				
+				/*
+				 * CHECK FOR MALICIOUS SOFTWARE
+				 */
+				
+				if(mal_software_scoring.isSelected()){
+					object.mal_software_sc = true;
+				}
+				else{
+					object.mal_software_sc = false;
+				}
+				
+				
+				
+				
+				
+				
 				pythonCall(object);
 				//System.out.println("Scored?: " + finalScore + " Setting: " + object.ssh_service_setting);
 			}
@@ -611,7 +828,7 @@ public class MainUI {
 			line = bfr.readLine();
 			resultHolder = new ResultHolder(line);
 			if(resultHolder.getStatusSSH()) {
-				score += object.ssh_service_sc;
+				//score += object.ssh_service_sc;
 			}
 			System.out.println("SSH Status: " + resultHolder.getStatusSSH());
 //			while((line = bfr.readLine()) != null) {
