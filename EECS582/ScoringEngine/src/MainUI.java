@@ -1,53 +1,29 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JButton;
-
-import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import javax.swing.JToolBar;
-import javax.swing.JSplitPane;
 import javax.swing.JPanel;
 
 import java.awt.Color;
 
 import javax.swing.JMenuBar;
 
-import java.awt.Choice;
-
 import javax.swing.ButtonGroup;
-import javax.swing.JDesktopPane;
-import javax.swing.JLayeredPane;
-import javax.swing.JInternalFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
-import javax.swing.JPopupMenu;
-
-import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.Font;
 
-import javax.swing.JTextPane;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.JTable;
 
-import java.awt.GridLayout;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JRadioButton;
 
 import java.awt.SystemColor;
-import java.awt.Checkbox;
-
 import javax.swing.JCheckBox;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.JTextField;
 
 
@@ -64,8 +40,8 @@ public class MainUI {
 	private JTable table_8;
 	private JTable table_9;
 	private JTextField textField_sudo;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
+	private final ButtonGroup ssh_anon_login_group = new ButtonGroup();
+	private final ButtonGroup ssh_v_2_group = new ButtonGroup();
 	private final ButtonGroup buttonGroup_2 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_3 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_4 = new ButtonGroup();
@@ -102,7 +78,7 @@ public class MainUI {
 	public MainUI() {
 		initialize();
 	}
-
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -142,25 +118,25 @@ public class MainUI {
 		panel_ssh.add(ssh_service);
 		ssh_service.setLayout(null);
 		
-		JLabel lblEnforcepolicy = new JLabel("SSH Service");
-		lblEnforcepolicy.setBounds(10, 8, 125, 18);
-		ssh_service.add(lblEnforcepolicy);
+		JLabel ssh_service_text = new JLabel("SSH Service");
+		ssh_service_text.setBounds(10, 8, 125, 18);
+		ssh_service.add(ssh_service_text);
 		
-		JCheckBox chckbxScoring = new JCheckBox("Scoring");
-		chckbxScoring.setBounds(399, 6, 95, 23);
-		ssh_service.add(chckbxScoring);
+		final JCheckBox ssh_service_scoring = new JCheckBox("Scoring");
+		ssh_service_scoring.setBounds(399, 6, 95, 23);
+		ssh_service.add(ssh_service_scoring);
 		
-		ButtonGroup group = new ButtonGroup();
+		ButtonGroup ssh_service_group = new ButtonGroup();
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Enabled");
-		rdbtnNewRadioButton.setBounds(141, 6, 99, 23);
-		ssh_service.add(rdbtnNewRadioButton);
-		group.add(rdbtnNewRadioButton);
+		final JRadioButton ssh_service_en = new JRadioButton("Enabled");
+		ssh_service_en.setBounds(141, 6, 99, 23);
+		ssh_service.add(ssh_service_en);
+		ssh_service_group.add(ssh_service_en);
 		
-		JRadioButton rdbtnDisabled = new JRadioButton("Disabled");
-		rdbtnDisabled.setBounds(242, 6, 95, 23);
-		ssh_service.add(rdbtnDisabled);
-		group.add(rdbtnDisabled);
+		JRadioButton ssh_service_dis = new JRadioButton("Disabled");
+		ssh_service_dis.setBounds(242, 6, 95, 23);
+		ssh_service.add(ssh_service_dis);
+		ssh_service_group.add(ssh_service_dis);
 		
 		table = new JTable();
 		table.setBounds(399, 16, 0, 0);
@@ -176,19 +152,19 @@ public class MainUI {
 		lblAnonymousLogin.setBounds(10, 8, 125, 18);
 		anon_login.add(lblAnonymousLogin);
 		
-		JCheckBox checkBox_3 = new JCheckBox("Scoring");
-		checkBox_3.setBounds(399, 6, 95, 23);
-		anon_login.add(checkBox_3);
+		JCheckBox anon_login_scoring = new JCheckBox("Scoring");
+		anon_login_scoring.setBounds(399, 6, 95, 23);
+		anon_login.add(anon_login_scoring);
 		
-		JRadioButton radioButton_6 = new JRadioButton("Enabled");
-		buttonGroup.add(radioButton_6);
-		radioButton_6.setBounds(141, 6, 99, 23);
-		anon_login.add(radioButton_6);
+		JRadioButton anon_login_en = new JRadioButton("Enabled");
+		ssh_anon_login_group.add(anon_login_en);
+		anon_login_en.setBounds(141, 6, 99, 23);
+		anon_login.add(anon_login_en);
 		
-		JRadioButton radioButton_7 = new JRadioButton("Disabled");
-		buttonGroup.add(radioButton_7);
-		radioButton_7.setBounds(242, 6, 95, 23);
-		anon_login.add(radioButton_7);
+		JRadioButton anon_login_dis = new JRadioButton("Disabled");
+		ssh_anon_login_group.add(anon_login_dis);
+		anon_login_dis.setBounds(242, 6, 95, 23);
+		anon_login.add(anon_login_dis);
 		
 		table_4 = new JTable();
 		table_4.setBackground(SystemColor.menu);
@@ -204,19 +180,19 @@ public class MainUI {
 		version_2.setBounds(10, 8, 125, 18);
 		panel.add(version_2);
 		
-		JCheckBox checkBox_4 = new JCheckBox("Scoring");
-		checkBox_4.setBounds(399, 6, 95, 23);
-		panel.add(checkBox_4);
+		JCheckBox ssh_v2_scoring = new JCheckBox("Scoring");
+		ssh_v2_scoring.setBounds(399, 6, 95, 23);
+		panel.add(ssh_v2_scoring);
 		
-		JRadioButton radioButton_8 = new JRadioButton("Enabled");
-		buttonGroup_1.add(radioButton_8);
-		radioButton_8.setBounds(141, 6, 99, 23);
-		panel.add(radioButton_8);
+		JRadioButton ssh_v_2_en = new JRadioButton("Enabled");
+		ssh_v_2_group.add(ssh_v_2_en);
+		ssh_v_2_en.setBounds(141, 6, 99, 23);
+		panel.add(ssh_v_2_en);
 		
-		JRadioButton radioButton_9 = new JRadioButton("Disabled");
-		buttonGroup_1.add(radioButton_9);
-		radioButton_9.setBounds(242, 6, 95, 23);
-		panel.add(radioButton_9);
+		JRadioButton ssh_v_2_dis = new JRadioButton("Disabled");
+		ssh_v_2_group.add(ssh_v_2_dis);
+		ssh_v_2_dis.setBounds(242, 6, 95, 23);
+		panel.add(ssh_v_2_dis);
 		
 		table_5 = new JTable();
 		table_5.setBackground(SystemColor.menu);
@@ -576,21 +552,28 @@ public class MainUI {
 		
 		JMenuItem mntmSaveSettingsAnd = new JMenuItem("Save Settings And Run");
 		mnFile.add(mntmSaveSettingsAnd);
-	}
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
+		mntmSaveSettingsAnd.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent ae){
+				currentSettings ojbect = new currentSettings();
+				
+				/**
+				 * check ssh service check
+				 */
+				if(ssh_service_en.isSelected() && ssh_service_scoring.isSelected()){
+					ojbect.ssh_service_sc = 1;
+					ojbect.ssh_service_setting = "enabled";
 				}
-			}
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
+				else if(!ssh_service_en.isSelected() && ssh_service_scoring.isSelected()){
+					ojbect.ssh_service_sc = 1;
+					ojbect.ssh_service_setting = "disabled";
 				}
-			}
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
+				else{
+					ojbect.ssh_service_sc = -1;
+					ojbect.ssh_service_setting = "null";
+				}
+				
+				System.out.println("Scored?: " + ojbect.ssh_service_sc + " Setting: " + ojbect.ssh_service_setting);
 			}
 		});
 	}
