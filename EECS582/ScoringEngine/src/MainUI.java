@@ -580,20 +580,21 @@ public class MainUI {
 					object.ssh_service_sc = -1;
 					object.ssh_service_setting = "null";
 				}
-				
-				System.out.println("Scored?: " + object.ssh_service_sc + " Setting: " + object.ssh_service_setting);
-				pythonCall();
+				pythonCall(object);
+				//System.out.println("Scored?: " + finalScore + " Setting: " + object.ssh_service_setting);
 			}
 		});
 	}
 	/**
-	 * Mid Layer Section
+	 * Mid Layer Region
 	 */
 	private static String path = "./string_script_task.py";
 	private static String python = "python3";
 	private static ResultHolder resultHolder;
+	private static int finalScore = 0;
 	private final static ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-	public static void checkServicesLin(int s_type, String pname) {
+	public static int checkServicesLin(currentSettings object, int s_type, String pname) {
+		int score = 0;
 		try {
 			String pythonScriptPath = path; // need installer to determine locations
 			String cmd = new String();
@@ -609,6 +610,9 @@ public class MainUI {
 			String line = "";
 			line = bfr.readLine();
 			resultHolder = new ResultHolder(line);
+			if(resultHolder.getStatusSSH()) {
+				score += object.ssh_service_sc;
+			}
 			System.out.println("SSH Status: " + resultHolder.getStatusSSH());
 //			while((line = bfr.readLine()) != null) {
 //			// display each output line form python script
@@ -618,17 +622,23 @@ public class MainUI {
 		} catch (IOException err) {
 			System.out.println(err.getMessage());
 		}
+		return score;
 	}
-	public static void pythonCall() {
+	public static void pythonCall(final currentSettings object) {
 		final Runnable pythonCaller = new Runnable() {
 			public void run() { 
-				pythonCallManual();
+				pythonCallManual(object);
+				System.out.println("Scored: " + finalScore + " Setting: " + object.ssh_service_setting);
 			}
 		};
 		//Set interval to call script
 		final ScheduledFuture<?> pythonCallerHandle = scheduler.scheduleAtFixedRate(pythonCaller, -1, 30, TimeUnit.SECONDS);
 	}
-	public static void pythonCallManual() {
-		checkServicesLin(1, "sshd");
+	public static void pythonCallManual(currentSettings object) {
+		int score = 0;
+		if(object.ssh_service_setting.equals("enabled")) {
+			score += checkServicesLin(object, 1, "sshd");
+		}
+		finalScore += score;
 	}
 }
