@@ -792,11 +792,6 @@ public class MainUI {
 					object.mal_software_sc = false;
 				}
 				
-				
-				
-				
-				
-				
 				pythonCall(object);
 				//System.out.println("Scored?: " + finalScore + " Setting: " + object.ssh_service_setting);
 			}
@@ -841,6 +836,7 @@ public class MainUI {
 		}
 		return score;
 	}
+	@SuppressWarnings("unused")
 	public static void pythonCall(final currentSettings object) {
 		final Runnable pythonCaller = new Runnable() {
 			public void run() { 
