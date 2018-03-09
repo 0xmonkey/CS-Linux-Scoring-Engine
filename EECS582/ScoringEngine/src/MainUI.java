@@ -805,13 +805,14 @@ public class MainUI {
 	private static ResultHolder resultHolder;
 	private static int finalScore = 0;
 	private final static ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-	public static int checkServicesLin(currentSettings object, int s_type, String pname) {
+	public static int checkServicesLin(currentSettings object, String pname) {
 		int score = 0;
 		try {
 			String pythonScriptPath = path; // need installer to determine locations
 			String cmd = new String();
 			cmd = python + " "; // check version of installed python and what bash command to use (python, py, python3)
-			cmd += pythonScriptPath + " " + s_type + " " + pname;
+			cmd += pythonScriptPath + pname;
+			//System.out.println("cmd: " + cmd);
 		 
 			// create runtime to execute external command
 			Runtime rt = Runtime.getRuntime();
@@ -820,17 +821,20 @@ public class MainUI {
 			// retrieve output from python script
 			BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));
 			String line = "";
-			line = bfr.readLine();
-			resultHolder = new ResultHolder(line);
-			if(resultHolder.getStatusSSH()) {
-				//score += object.ssh_service_sc;
+			resultHolder = new ResultHolder();
+			while((line = bfr.readLine()) != null) {
+				resultHolder.parse(line);
 			}
-			System.out.println("SSH Status: " + resultHolder.getStatusSSH());
-//			while((line = bfr.readLine()) != null) {
-//			// display each output line form python script
-//				resultHolder = new ResultHolder(line);
-//				System.out.println("SSH Status: " + resultHolder.getStatusSSH());
-//			}
+			//Add up score and display individual results here
+			if(resultHolder.getStatusSSH()) {
+				score += 1;
+				System.out.println("SSH Status: " + resultHolder.getStatusSSH());
+			}
+			if(resultHolder.getStatusFTP()) {
+				score += 1;
+				System.out.println("FTP Status: " + resultHolder.getStatusFTP());
+			}
+			
 		} catch (IOException err) {
 			System.out.println(err.getMessage());
 		}
@@ -840,18 +844,23 @@ public class MainUI {
 	public static void pythonCall(final currentSettings object) {
 		final Runnable pythonCaller = new Runnable() {
 			public void run() { 
+				// Call python script and output the score
 				pythonCallManual(object);
-				System.out.println("Scored: " + finalScore + " Setting: " + object.ssh_service_setting);
+				System.out.println("Scored: " + finalScore);
 			}
 		};
 		//Set interval to call script
 		final ScheduledFuture<?> pythonCallerHandle = scheduler.scheduleAtFixedRate(pythonCaller, -1, 30, TimeUnit.SECONDS);
 	}
 	public static void pythonCallManual(currentSettings object) {
-		int score = 0;
-		if(object.ssh_service_setting.equals("enabled")) {
-			score += checkServicesLin(object, 1, "sshd");
+		//Add services to check here
+		String pname = "";
+		if(object.ssh_service_sc && object.ssh_service_setting.equals("enabled")) {
+			pname += " 1 sshd";
 		}
-		finalScore += score;
+		if(object.ftp_service_sc && object.ftp_service_setting.equals("enabled")) {
+			pname += " 1 vsftpd";
+		}
+		finalScore += checkServicesLin(object, pname);
 	}
 }
