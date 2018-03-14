@@ -825,7 +825,7 @@ public class MainUI {
 			while((line = bfr.readLine()) != null) {
 				resultHolder.parse(line);
 			}
-			//Add up score and display individual results here
+			//TODO: Add up score and display individual results here
 			if(resultHolder.getStatusSSH()) {
 				score += 1;
 				System.out.println("SSH Status: " + resultHolder.getStatusSSH());
@@ -833,6 +833,18 @@ public class MainUI {
 			if(resultHolder.getStatusFTP()) {
 				score += 1;
 				System.out.println("FTP Status: " + resultHolder.getStatusFTP());
+			}
+			if(resultHolder.getStatusDNS()) {
+				score += 1;
+				System.out.println("DNS Status: " + resultHolder.getStatusDNS());
+			}
+			if(resultHolder.getStatusNetcat()) {
+				score += 1;
+				System.out.println("Netcat Status: " + resultHolder.getStatusNetcat());
+			}
+			if(resultHolder.getStatusWWW()) {
+				score += 1;
+				System.out.println("WWW Status: " + resultHolder.getStatusWWW());
 			}
 			
 		} catch (IOException err) {
@@ -846,20 +858,29 @@ public class MainUI {
 			public void run() { 
 				// Call python script and output the score
 				pythonCallManual(object);
-				System.out.println("Scored: " + finalScore);
+				System.out.println("Scored: " + finalScore); //TODO: Print finalScore/time
 			}
 		};
 		//Set interval to call script
 		final ScheduledFuture<?> pythonCallerHandle = scheduler.scheduleAtFixedRate(pythonCaller, -1, 30, TimeUnit.SECONDS);
 	}
 	public static void pythonCallManual(currentSettings object) {
-		//Add services to check here
+		//TODO: Add services to check here
 		String pname = "";
 		if(object.ssh_service_sc && object.ssh_service_setting.equals("enabled")) {
 			pname += " 1 sshd";
 		}
 		if(object.ftp_service_sc && object.ftp_service_setting.equals("enabled")) {
 			pname += " 1 vsftpd";
+		}
+		if(object.dns_service_sc && object.dns_service_setting.equals("enabled")) {
+			pname += " 1 bind9";
+		}
+		if(object.netcat_backdoor_sc && object.netcat_backdoor_setting.equals("enabled")) {
+			pname += " 1 netcat";
+		}
+		if(object.www_service_sc && object.www_service_setting.equals("enabled")) {
+			pname += " 1 apached";
 		}
 		finalScore += checkServicesLin(object, pname);
 	}
