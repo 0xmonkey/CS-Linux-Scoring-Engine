@@ -37,8 +37,11 @@ while (counter < arg_length):
   query = "Please cla---implement me"
    ##OHWEEE THIS IS GOING TO BE A GIANT PAIN 
 
+ elif (s_type == 3): ## Checking for various file types
+  query = "find /home -r *." + pname
+
    #Returns true iff service specified by pname is active
- q = os.system(query + " >/dev/null 2>&1") ##Execute query
+ q = os.system(query) ##Execute query
  if (q == 0):
   q = "TRUE";
  else:
