@@ -74,10 +74,10 @@ while (counter < arg_length):
          q = "TRUE"
      else:
          q = "FALSE"
-    uname = pname
-    pname = "UserExist" + uname
-    t_string = t_string + pname + ":" + str(q) + "\n"
-    counter = counter + 2
+     uname = pname
+     pname = "UserExist" + uname
+     t_string = t_string + pname + ":" + str(q) + "\n"
+     counter = counter + 2
 
  #checking password policy
  elif (s_type == 6):
