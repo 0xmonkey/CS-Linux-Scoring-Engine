@@ -32,7 +32,7 @@ while (counter < arg_length):
      pname = str(pname)
 
  #for service checking
- if (s_type >= 0 and s_type =< 3):
+ if (s_type >= 0 and s_type <= 3):
      #s_type is zero in system proc calls
      if (s_type == 0):
       ##query = "systemctl is-active -q " + pname ##build the query string to be called
