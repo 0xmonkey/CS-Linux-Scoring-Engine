@@ -27,33 +27,76 @@ t_string = ""
 while (counter < arg_length):
 
  s_type = int(os.sys.argv[int(counter)])
- pname = os.sys.argv[int((counter+1))]
- pname = str(pname)
+ if (s_type != 7):
+     pname = os.sys.argv[int((counter+1))]
+     pname = str(pname)
 
- #s_type is zero in system proc calls
- if (s_type == 0):
-  ##query = "systemctl is-active -q " + pname ##build the query string to be called
-  query = "status " + pname
- ##In the event we have a process that must be queried by invoking ps -e
- elif (s_type == 1):
-  query = "ps -e | grep -iw " + pname
+ #for service checking
+ if (s_type >= 0 && s_type =< 3):
+     #s_type is zero in system proc calls
+     if (s_type == 0):
+      ##query = "systemctl is-active -q " + pname ##build the query string to be called
+      query = "status " + pname
+     ##In the event we have a process that must be queried by invoking ps -e
+     elif (s_type == 1):
+      query = "ps -e | grep -iw " + pname
 
- elif (s_type == 2): ##If the type is a port number
-  query = "Please cla---implement me"
-   ##OHWEEE THIS IS GOING TO BE A GIANT PAIN
+     elif (s_type == 2): ##If the type is a port number
+      query = "Please cla---implement me"
+       ##OHWEEE THIS IS GOING TO BE A GIANT PAIN
 
- elif (s_type == 3): ## Checking for various file types
-  query = "find /home -r *." + pname
+     elif (s_type == 3): ## Checking for various file types
+      query = "find /home -r *." + pname
 
-   #Returns true iff service specified by pname is active
- q = os.system(query) ##Execute query
- if (q == 0):
-  q = "TRUE";
- else:
-  q = "FALSE";
- t_string = t_string + pname + ":" + str(q) + "\n" ##Return if status code is consistent with an active return code
- counter = counter + 2
+       #Returns true iff service specified by pname is active
+     q = os.system(query) ##Execute query
+     if (q == 0):
+      q = "TRUE";
+     else:
+      q = "FALSE";
+     t_string = t_string + pname + ":" + str(q) + "\n" ##Return if status code is consistent with an active return code
+     counter = counter + 2
+ #checking user password is set
+ elif (s_type == 4):
+    if(check_user_password_set(pname)):
+        q = "TRUE"
+    else:
+        q = "FALSE"
+    t_string = t_string + pname + ":" + str(q) + "\n"
+    counter = counter + 2
 
+ #checking user exists
+ elif (s_type == 5):
+     if(check_user_exists(pname)):
+         q = "TRUE"
+     else:
+         q = "FALSE"
+    t_string = t_string + pname + ":" + str(q) + "\n"
+    counter = counter + 2
+
+ #checking password policy
+ elif (s_type == 6):
+     arg1 = pname
+     arg2 = str(os.sys.argv[int((counter+2))])
+     arg3 = str(os.sys.argv[int((counter+3))])
+     arg4 = str(os.sys.argv[int((counter+4))])
+     pname = "PassPol"
+     if (check_password_policy(arg1, arg2, arg3, arg4)):
+         q = "TRUE"
+     else:
+         q = "FALSE"
+     t_string = t_string + pname + ":" + str(q) + "\n"
+     counter = counter + 5
+
+ #checking sudo user passwords
+ elif (s_type == 7):
+     pname = "SudoPass"
+     if (check_sudo_user_password()):
+         q = "TRUE"
+     else:
+         q = "FALSE"
+     t_string = t_string + pname + ":" + str(q) + "\n"
+     counter = counter + 1
 print(t_string)
 
 
@@ -109,10 +152,10 @@ def check_user_exists(userName: str) -> bool:
     try:
     # Searches /etc/passwd for entry with username userName
         pwd.getpwnam(str(userName)) # Forces input to be a string
-        print(True)
+        #print(True)
         return True
     except KeyError:
-        print(False)
+        #print(False)
         return False
 
 
@@ -243,9 +286,9 @@ def check_sudo_user_password() -> bool:
   # else return True
   if searchStr in sudoFile.read():
     sudoFile.close()
-    print('false')
+    #print('false')
     return False
   else:
     sudoFile.close()
-    print('true')
+    #print('true')
     return True
