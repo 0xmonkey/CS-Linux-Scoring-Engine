@@ -25,83 +25,82 @@ counter = 1
 t_string = ""
 
 while (counter < arg_length):
+    s_type = int(os.sys.argv[int(counter)])
+    if (s_type != 7):
+        pname = os.sys.argv[int((counter+1))]
+        pname = str(pname)
 
- s_type = int(os.sys.argv[int(counter)])
- if (s_type != 7):
-     pname = os.sys.argv[int((counter+1))]
-     pname = str(pname)
+     #for service checking
+    if (s_type >= 0 and s_type <= 3):
+        #s_type is zero in system proc calls
+        if (s_type == 0):
+        ##query = "systemctl is-active -q " + pname ##build the query string to be called
+            query = "status " + pname
+        ##In the event we have a process that must be queried by invoking ps -e
+        elif (s_type == 1):
+            query = "ps -e | grep -iw " + pname
 
- #for service checking
- if (s_type >= 0 and s_type <= 3):
-     #s_type is zero in system proc calls
-     if (s_type == 0):
-      ##query = "systemctl is-active -q " + pname ##build the query string to be called
-      query = "status " + pname
-     ##In the event we have a process that must be queried by invoking ps -e
-     elif (s_type == 1):
-      query = "ps -e | grep -iw " + pname
+        elif (s_type == 2): ##If the type is a port number
+            query = "Please cla---implement me"
+            ##OHWEEE THIS IS GOING TO BE A GIANT PAIN
 
-     elif (s_type == 2): ##If the type is a port number
-      query = "Please cla---implement me"
-       ##OHWEEE THIS IS GOING TO BE A GIANT PAIN
+        elif (s_type == 3): ## Checking for various file types
+            query = "find /home -r *." + pname
 
-     elif (s_type == 3): ## Checking for various file types
-      query = "find /home -r *." + pname
+            #Returns true iff service specified by pname is active
+        q = os.system(query) ##Execute query
+        if (q == 0):
+            q = "TRUE";
+        else:
+            q = "FALSE";
+        t_string = t_string + pname + ":" + str(q) + "\n" ##Return if status code is consistent with an active return code
+        counter = counter + 2
 
-       #Returns true iff service specified by pname is active
-     q = os.system(query) ##Execute query
-     if (q == 0):
-      q = "TRUE";
-     else:
-      q = "FALSE";
-     t_string = t_string + pname + ":" + str(q) + "\n" ##Return if status code is consistent with an active return code
-     counter = counter + 2
+    #checking user password is set
+    elif (s_type == 4):
+        if(check_user_password_set(pname)):
+            q = "TRUE"
+        else:
+            q = "FALSE"
+        uname = pname
+        pname = "PassSet" + uname
+        t_string = t_string + pname + ":" + str(q) + "\n"
+        counter = counter + 2
 
- #checking user password is set
- elif (s_type == 4):
-    if(check_user_password_set(pname)):
-        q = "TRUE"
-    else:
-        q = "FALSE"
-    uname = pname
-    pname = "PassSet" + uname
-    t_string = t_string + pname + ":" + str(q) + "\n"
-    counter = counter + 2
+    #checking user exists
+    elif (s_type == 5):
+        if(check_user_exists(pname)):
+            q = "TRUE"
+        else:
+            q = "FALSE"
+        uname = pname
+        pname = "UserExist" + uname
+        t_string = t_string + pname + ":" + str(q) + "\n"
+        counter = counter + 2
 
- #checking user exists
- elif (s_type == 5):
-     if(check_user_exists(pname)):
-         q = "TRUE"
-     else:
-         q = "FALSE"
-     uname = pname
-     pname = "UserExist" + uname
-     t_string = t_string + pname + ":" + str(q) + "\n"
-     counter = counter + 2
+    #checking password policy
+    elif (s_type == 6):
+        arg1 = pname
+        arg2 = str(os.sys.argv[int((counter+2))])
+        arg3 = str(os.sys.argv[int((counter+3))])
+        arg4 = str(os.sys.argv[int((counter+4))])
+        pname = "PassPol"
+        if (check_password_policy(arg1, arg2, arg3, arg4)):
+            q = "TRUE"
+        else:
+            q = "FALSE"
+        t_string = t_string + pname + ":" + str(q) + "\n"
+        counter = counter + 5
 
- #checking password policy
- elif (s_type == 6):
-     arg1 = pname
-     arg2 = str(os.sys.argv[int((counter+2))])
-     arg3 = str(os.sys.argv[int((counter+3))])
-     arg4 = str(os.sys.argv[int((counter+4))])
-     pname = "PassPol"
-     if (check_password_policy(arg1, arg2, arg3, arg4)):
-         q = "TRUE"
-     else:
-         q = "FALSE"
-     t_string = t_string + pname + ":" + str(q) + "\n"
-     counter = counter + 5
-
- #checking sudo user passwords
- elif (s_type == 7):
-     pname = "SudoPass"
-     if (check_sudo_user_password()):
-         q = "TRUE"
-     else:
-         q = "FALSE"
-     t_string = t_string + pname + ":" + str(q) + "\n"
-     counter = counter + 1
+    #checking sudo user passwords
+    elif (s_type == 7):
+        pname = "SudoPass"
+        if (check_sudo_user_password()):
+            q = "TRUE"
+        else:
+            q = "FALSE"
+        t_string = t_string + pname + ":" + str(q) + "\n"
+        counter = counter + 1
 print(t_string)
 
 
@@ -200,7 +199,6 @@ def check_password_policy(changeTries: int=None, maxDays: int=None, maxLen: int=
         True if parameters set by user match what is in /etc/login.defs
         False otherwise
     '''
-
     # Stores arguments in a dictionary form for comparison
     argDict = {
         'PASS_MAX_DAYS'     : maxDays,
@@ -208,7 +206,6 @@ def check_password_policy(changeTries: int=None, maxDays: int=None, maxLen: int=
         'PASS_MIN_LEN'      : minLen,
         'PASS_MAX_LEN'      : maxLen
     }
-
     # Stores all non-None arguments
     userArgDict = {}
     for key in argDict:
@@ -264,36 +261,36 @@ def check_password_policy(changeTries: int=None, maxDays: int=None, maxLen: int=
 
 
 def check_sudo_user_password() -> bool:
-  '''
-  Function checks if sudo users are set to require passwords
+    '''
+    Function checks if sudo users are set to require passwords
 
-  Searches the /etc/sudoers file for the entry 'NOPASSWD'
-  If this setting exists in the file, then that means a sudo user
-  will be able to execute sudo commands without having to use a password
+    Searches the /etc/sudoers file for the entry 'NOPASSWD'
+    If this setting exists in the file, then that means a sudo user
+    will be able to execute sudo commands without having to use a password
 
-  Parameters
-  ----------
-  None
+    Parameters
+    ----------
+    None
 
-  Returns
-  -------
-  bool
-    True if sudo users must use passwords to execute sudo commands
-    False if sudo users do not have to use passwords to execute sudo commands
-  '''
-  # String to search
-  searchStr = 'NOPASSWD'
+    Returns
+    -------
+    bool
+        True if sudo users must use passwords to execute sudo commands
+        False if sudo users do not have to use passwords to execute sudo commands
+    '''
+    # String to search
+    searchStr = 'NOPASSWD'
 
-  # Storing open file object for the /etc/sudoers file
-  sudoFile = open("/etc/sudoers", 'r')
+    # Storing open file object for the /etc/sudoers file
+    sudoFile = open("/etc/sudoers", 'r')
 
-  # If str exists in sudoFile, return False
-  # else return True
-  if searchStr in sudoFile.read():
-    sudoFile.close()
-    #print('false')
-    return False
-  else:
-    sudoFile.close()
-    #print('true')
-    return True
+    # If str exists in sudoFile, return False
+    # else return True
+    if searchStr in sudoFile.read():
+        sudoFile.close()
+        #print('false')
+        return False
+    else:
+        sudoFile.close()
+        #print('true')
+        return True
