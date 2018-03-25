@@ -56,12 +56,15 @@ while (counter < arg_length):
       q = "FALSE";
      t_string = t_string + pname + ":" + str(q) + "\n" ##Return if status code is consistent with an active return code
      counter = counter + 2
+
  #checking user password is set
  elif (s_type == 4):
     if(check_user_password_set(pname)):
         q = "TRUE"
     else:
         q = "FALSE"
+    uname = pname
+    pname = "PassSet" + uname
     t_string = t_string + pname + ":" + str(q) + "\n"
     counter = counter + 2
 
@@ -71,6 +74,8 @@ while (counter < arg_length):
          q = "TRUE"
      else:
          q = "FALSE"
+    uname = pname
+    pname = "UserExist" + uname
     t_string = t_string + pname + ":" + str(q) + "\n"
     counter = counter + 2
 
