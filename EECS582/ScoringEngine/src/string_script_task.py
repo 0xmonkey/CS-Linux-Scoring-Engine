@@ -30,29 +30,42 @@ while (counter < arg_length):
  pname = os.sys.argv[int((counter+1))]
  pname = str(pname)
 
- #s_type is zero in system proc calls
- if (s_type == 0):
-  ##query = "systemctl is-active -q " + pname ##build the query string to be called
-  query = "status " + pname
- ##In the event we have a process that must be queried by invoking ps -e
- elif (s_type == 1):
-  query = "ps -e | grep -iw " + pname
+ #for service checking
+ if (s_type =< 3 && s_type >= 0)
+     #s_type is zero in system proc calls
+     if (s_type == 0):
+      ##query = "systemctl is-active -q " + pname ##build the query string to be called
+      query = "status " + pname
+     ##In the event we have a process that must be queried by invoking ps -e
+     elif (s_type == 1):
+      query = "ps -e | grep -iw " + pname
 
- elif (s_type == 2): ##If the type is a port number
-  query = "Please cla---implement me"
-   ##OHWEEE THIS IS GOING TO BE A GIANT PAIN
+     elif (s_type == 2): ##If the type is a port number
+      query = "Please cla---implement me"
+       ##OHWEEE THIS IS GOING TO BE A GIANT PAIN
 
- elif (s_type == 3): ## Checking for various file types
-  query = "find /home -r *." + pname
+     elif (s_type == 3): ## Checking for various file types
+      query = "find /home -r *." + pname
 
-   #Returns true iff service specified by pname is active
- q = os.system(query) ##Execute query
- if (q == 0):
-  q = "TRUE";
- else:
-  q = "FALSE";
- t_string = t_string + pname + ":" + str(q) + "\n" ##Return if status code is consistent with an active return code
- counter = counter + 2
+       #Returns true iff service specified by pname is active
+     q = os.system(query) ##Execute query
+     if (q == 0):
+      q = "TRUE";
+     else:
+      q = "FALSE";
+     t_string = t_string + pname + ":" + str(q) + "\n" ##Return if status code is consistent with an active return code
+     counter = counter + 2
+ #checking user password is set
+ elif (s_type == 4)
+
+ #checking user exists
+ elif (s_type == 5)
+
+ #checking password policy
+ elif (s_type == 6)
+
+ #checking sudo user passwords
+ elif (s_type == 7)
 
 print(t_string)
 
