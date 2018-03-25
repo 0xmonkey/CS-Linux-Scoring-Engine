@@ -803,7 +803,8 @@ public class MainUI {
 	private static String path = "./string_script_task.py";
 	private static String python = "python3";
 	private static ResultHolder resultHolder;
-	private static int finalScore = 0;
+	private static float finalScore = 0;
+	private static float uptime = 0;
 	private final static ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 	public static int checkServicesLin(currentSettings object, String pname) {
 		int score = 0;
@@ -846,6 +847,10 @@ public class MainUI {
 				score += 1;
 				System.out.println("WWW Status: " + resultHolder.getStatusWWW());
 			}
+			if(resultHolder.getStatusSQL()) {
+				score += 1;
+				System.out.println("SQL Status: " + resultHolder.getStatusSQL());
+			}
 			
 		} catch (IOException err) {
 			System.out.println(err.getMessage());
@@ -858,7 +863,7 @@ public class MainUI {
 			public void run() { 
 				// Call python script and output the score
 				pythonCallManual(object);
-				System.out.println("Scored: " + finalScore); //TODO: Print finalScore/time
+				System.out.println("Score: " + (String.format("%.2f", finalScore/++uptime))); //TODO: Print finalScore/time
 			}
 		};
 		//Set interval to call script
@@ -874,13 +879,16 @@ public class MainUI {
 			pname += " 1 vsftpd";
 		}
 		if(object.dns_service_sc && object.dns_service_setting.equals("enabled")) {
-			pname += " 1 bind9";
+			pname += " 1 named";
 		}
 		if(object.netcat_backdoor_sc && object.netcat_backdoor_setting.equals("enabled")) {
 			pname += " 1 netcat";
 		}
 		if(object.www_service_sc && object.www_service_setting.equals("enabled")) {
-			pname += " 1 apached";
+			pname += " 1 apache2";
+		}
+		if(object.sql_service_sc && object.sql_service_setting.equals("enabled")) {
+			pname += " 1 mysqld";
 		}
 		finalScore += checkServicesLin(object, pname);
 	}

@@ -7,6 +7,7 @@ public class ResultHolder {
 	private boolean dns = false;
 	private boolean netcat = false;
 	private boolean www = false;
+	private boolean sql = false;
 	public ResultHolder() {
 	}
 	public ResultHolder(String input) {
@@ -25,17 +26,17 @@ public class ResultHolder {
 			else if(curPname.equals("vsftpd")) {
 				ftp = Boolean.parseBoolean(in);
 			}
-			else if(curPname.equals("bind9")) {
+			else if(curPname.equals("named")) {
 				dns = Boolean.parseBoolean(in);
 			}
 			else if(curPname.equals("netcat")) {
 				netcat = Boolean.parseBoolean(in);
 			}
-			else if(curPname.equals("netcat")) {
-				netcat = Boolean.parseBoolean(in);
-			}
-			else if(curPname.equals("apached")) {
+			else if(curPname.equals("apache2")) {
 				www = Boolean.parseBoolean(in);
+			}
+			else if(curPname.equals("mysqld")) {
+				sql = Boolean.parseBoolean(in);
 			}
 			curPname = in;
 		}
@@ -54,5 +55,8 @@ public class ResultHolder {
 	}
 	public final boolean getStatusWWW() {
 		return www;
+	}
+	public final boolean getStatusSQL() {
+		return sql;
 	}
 }
