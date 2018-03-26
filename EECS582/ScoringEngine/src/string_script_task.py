@@ -234,8 +234,8 @@ while (counter < arg_length):
             query = "ps -e | grep -iw " + pname
 
         elif (s_type == 2): ##If the type is a port number
-            query = "Please cla---implement me"
-            ##OHWEEE THIS IS GOING TO BE A GIANT PAIN
+            query = "./ssh_query.sh " + pname
+            #use a subscript to pull out the presence or absence of connections on a given service of port.
 
         elif (s_type == 3): ## Checking for various file types
             query = "find /home -r *." + pname
