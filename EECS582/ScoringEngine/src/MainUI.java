@@ -813,19 +813,23 @@ public class MainUI {
 			String cmd = new String();
 			cmd = python + " "; // check version of installed python and what bash command to use (python, py, python3)
 			cmd += pythonScriptPath + pname;
-			//System.out.println("cmd: " + cmd);
+			//System.out.println("cmd: " + cmd); //TODO: Remove debug code
 		 
 			// create runtime to execute external command
 			Runtime rt = Runtime.getRuntime();
 			Process pr = rt.exec(cmd);
+			//System.out.println("exec"); //TODO: Remove debug code
 		 
 			// retrieve output from python script
 			BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));
 			String line = "";
 			resultHolder = new ResultHolder();
+			//System.out.println("reading"); //TODO: Remove debug code
 			while((line = bfr.readLine()) != null) {
+				//System.out.println(line); //TODO: Remove debug code
 				resultHolder.parse(line);
 			}
+			//System.out.println("Done while"); //TODO: Remove debug code
 			//TODO: Add up score and display individual results here
 			if(resultHolder.getStatusSSH()) {
 				score += 1;
@@ -851,6 +855,17 @@ public class MainUI {
 				score += 1;
 				System.out.println("SQL Status: " + resultHolder.getStatusSQL());
 			}
+			if(resultHolder.getStatusSudoPW()) {
+				score += 1;
+				System.out.println("Sudo Password Status: " + resultHolder.getStatusSudoPW());
+			}
+			//System.out.println("Check users?"); //TODO: Remove debug code
+			if(!resultHolder.getStatusUsers().isEmpty() && !resultHolder.getStatusUser(object.rm_usr_setting)) {
+				//System.out.println("Checking users"); //TODO: Remove debug code
+				score += 1;
+				System.out.println("Remove User " + object.rm_usr_setting + " Status: " + !resultHolder.getStatusUser(object.rm_usr_setting));
+			}
+			
 			
 		} catch (IOException err) {
 			System.out.println(err.getMessage());
@@ -863,7 +878,7 @@ public class MainUI {
 			public void run() { 
 				// Call python script and output the score
 				pythonCallManual(object);
-				System.out.println("Score: " + (String.format("%.2f", finalScore/++uptime))); //TODO: Print finalScore/time
+				System.out.println("Score: " + (String.format("%.2f", finalScore/++uptime)));
 			}
 		};
 		//Set interval to call script
@@ -889,6 +904,12 @@ public class MainUI {
 		}
 		if(object.sql_service_sc && object.sql_service_setting.equals("enabled")) {
 			pname += " 1 mysqld";
+		}
+		if(object.sudo_pw_sc && object.sudo_pw_setting.equals("enabled")) {
+			pname += " 7";
+		}
+		if(object.rm_usr_sc && !object.rm_usr_setting.equals("")) {
+			pname += " 5 " + object.rm_usr_setting;
 		}
 		finalScore += checkServicesLin(object, pname);
 	}
