@@ -793,6 +793,8 @@ public class MainUI {
 				}
 				
 				pythonCall(object);
+				frame.dispose();
+				new ScoringFrame();
 				//System.out.println("Scored?: " + finalScore + " Setting: " + object.ssh_service_setting);
 			}
 		});
