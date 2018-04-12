@@ -23,8 +23,14 @@ import javax.swing.JRadioButton;
 
 import java.awt.SystemColor;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
+import java.nio.channels.FileChannel;
+import java.nio.channels.ReadableByteChannel;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -33,7 +39,6 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JCheckBox;
 import javax.swing.border.BevelBorder;
 import javax.swing.JTextField;
-import javax.swing.JFormattedTextField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
@@ -66,11 +71,40 @@ public class MainUI {
 	private JTable table_1;
 	private JTextField no_files_textBox;
 	private JTable table_13;
+	
+	
+	private static String path = ""; 
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		// Get access to python script
+		// https://stackoverflow.com/questions/19010204/executing-a-batch-file-that-lives-inside-a-jar-file
+		File tmp = null;
+		try {
+			tmp = File.createTempFile("PythonScript", ".py");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    try (final ReadableByteChannel channel = Channels.newChannel(MainUI.class.getResourceAsStream("string_script_task.py"));
+	            final FileChannel fileChannel = new RandomAccessFile(tmp, "rw").getChannel()) {
+	        final ByteBuffer bb = ByteBuffer.allocate(1024);
+	        while (channel.read(bb) > 0) {
+	            bb.flip();
+	            fileChannel.write(bb);
+	            bb.clear();
+	        }
+	    } catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    if(tmp != null) {tmp.setExecutable(true);}
+	    path = tmp.getAbsolutePath();
+		
+	    // Main
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -81,6 +115,7 @@ public class MainUI {
 				}
 			}
 		});
+		tmp.deleteOnExit();
 	}
 
 	/**
@@ -1011,17 +1046,13 @@ public class MainUI {
 				
 				pythonCall(object);
 				
-				
-				
-				
-				//System.out.println("Scored?: " + finalScore + " Setting: " + object.ssh_service_setting);
 			}
 		});
 	}
 	/**
 	 * Mid Layer Region
 	 */
-	private static String path = "./string_script_task.py";
+
 	private static String python = "python3";
 	private static ResultHolder resultHolder;
 	private static float finalScore = 0;
@@ -1038,6 +1069,7 @@ public class MainUI {
 		int score = 0;
 		try {
 			String pythonScriptPath = path; // need installer to determine locations
+			//System.out.println(path); //TODO: Remove debug code
 			String cmd = new String();
 			cmd = python + " "; // check version of installed python and what bash command to use (python, py, python3)
 			cmd += pythonScriptPath + pname;
@@ -1106,7 +1138,8 @@ public class MainUI {
 			public void run() { 
 				// Call python script and output the score
 				pythonCallManual(object);
-				System.out.println("Score: " + (String.format("%.2f", finalScore/++uptime)));
+				ScoringFrame.ScoreNumber.setText((String.format("%.2f", finalScore/++uptime))); //TODO: Edit score output text
+				//System.out.println(path); //TODO: Remove debug code
 			}
 		};
 		//Set interval to call script
