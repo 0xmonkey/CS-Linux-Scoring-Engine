@@ -31,6 +31,9 @@ import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -80,7 +83,7 @@ public class MainUI {
 	 */
 	public static void main(String[] args) {
 		
-		// Get access to python script
+		// Get access to python script by creating a temp file from the python script within the .jar
 		// https://stackoverflow.com/questions/19010204/executing-a-batch-file-that-lives-inside-a-jar-file
 		File tmp = null;
 		try {
@@ -1122,8 +1125,14 @@ public class MainUI {
 			//System.out.println("Check users?"); //TODO: Remove debug code
 			if(!resultHolder.getStatusUsers().isEmpty() && !resultHolder.getStatusUser(object.rm_usr_setting)) {
 				//System.out.println("Checking users"); //TODO: Remove debug code
-				score += 1;
-				System.out.println("Remove User " + object.rm_usr_setting + " Status: " + !resultHolder.getStatusUser(object.rm_usr_setting));
+//				score += 1;
+//				System.out.println("Remove User " + object.rm_usr_setting + " Status: " + !resultHolder.getStatusUser(object.rm_usr_setting));
+				ArrayList<Map.Entry<String, Boolean>> users = resultHolder.getStatusUsers();
+				for(Entry<String, Boolean> user: users){
+					if(!user.getValue()) {
+						score += 1;
+					}
+				}
 			}
 			
 			
@@ -1170,7 +1179,11 @@ public class MainUI {
 			pname += " 7";
 		}
 		if(object.rm_usr_sc && !object.rm_usr_setting.equals("")) {
-			pname += " 5 " + object.rm_usr_setting;
+			String[] names = object.rm_usr_setting.split(",");
+			for(String name : names) {
+				pname += " 5 " + name.trim();
+			}
+			//pname += " 5 " + object.rm_usr_setting;
 		}
 		finalScore += checkServicesLin(object, pname);
 		ScoringFrame.ScoreNumber.setText("finalScore");
