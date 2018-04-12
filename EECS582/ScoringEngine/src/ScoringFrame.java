@@ -1,10 +1,13 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 
 public class ScoringFrame {
 
+	public static JLabel ScoreNumber;
 	private JFrame frame;
 
 	/**
@@ -35,8 +38,18 @@ public class ScoringFrame {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 236, 87);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblCurrentScore = new JLabel("Current Score:");
+		lblCurrentScore.setBounds(10, 10, 103, 27);
+		lblCurrentScore.setFont(new Font("Tahoma", Font.BOLD, 13));
+		frame.getContentPane().add(lblCurrentScore);
+		
+		ScoreNumber = new JLabel("");
+		ScoreNumber.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		ScoreNumber.setBounds(123, 10, 87, 27);
+		frame.getContentPane().add(ScoreNumber);
 	}
-
 }

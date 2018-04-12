@@ -33,6 +33,9 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JCheckBox;
 import javax.swing.border.BevelBorder;
 import javax.swing.JTextField;
+import javax.swing.JFormattedTextField;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 
 public class MainUI {
@@ -487,6 +490,146 @@ public class MainUI {
 		table_11.setBounds(399, 16, 0, 0);
 		panel_5.add(table_11);
 		
+		JPanel panel_passwdPolicy = new JPanel();
+		panel_passwdPolicy.setLayout(null);
+		panel_passwdPolicy.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		tabbedPane.addTab("Password Policy", null, panel_passwdPolicy, null);
+		
+		JLabel label = new JLabel("Policy");
+		label.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label.setBounds(10, 11, 108, 14);
+		panel_passwdPolicy.add(label);
+		
+		JLabel label_3 = new JLabel("Value");
+		label_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_3.setBounds(273, 11, 46, 14);
+		panel_passwdPolicy.add(label_3);
+		
+		JLabel label_4 = new JLabel("Scoring");
+		label_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_4.setBounds(415, 11, 46, 14);
+		panel_passwdPolicy.add(label_4);
+		
+		JPanel panel_10 = new JPanel();
+		panel_10.setLayout(null);
+		panel_10.setBounds(10, 36, 514, 35);
+		panel_passwdPolicy.add(panel_10);
+		
+		JLabel lblCheckUserExists = new JLabel("Check user exists");
+		lblCheckUserExists.setBounds(10, 8, 219, 18);
+		panel_10.add(lblCheckUserExists);
+		
+		final JCheckBox user_exists_checkBox = new JCheckBox("Scoring");
+		user_exists_checkBox.setBounds(399, 6, 95, 23);
+		panel_10.add(user_exists_checkBox);
+		
+		table_15 = new JTable();
+		table_15.setBackground(SystemColor.menu);
+		table_15.setBounds(399, 16, 0, 0);
+		panel_10.add(table_15);
+		
+		user_exists_textField = new JTextField();
+		user_exists_textField.setColumns(10);
+		user_exists_textField.setBounds(239, 7, 86, 20);
+		panel_10.add(user_exists_textField);
+		
+		JPanel panel_11 = new JPanel();
+		panel_11.setLayout(null);
+		panel_11.setBounds(10, 76, 514, 35);
+		panel_passwdPolicy.add(panel_11);
+		
+		JLabel lblCheckUserFor = new JLabel("Check user for password Set");
+		lblCheckUserFor.setBounds(10, 8, 219, 18);
+		panel_11.add(lblCheckUserFor);
+		
+		final JCheckBox usr_password_checkBox = new JCheckBox("Scoring");
+		usr_password_checkBox.setBounds(399, 6, 95, 23);
+		panel_11.add(usr_password_checkBox);
+		
+		table_16 = new JTable();
+		table_16.setBackground(SystemColor.menu);
+		table_16.setBounds(399, 16, 0, 0);
+		panel_11.add(table_16);
+		
+		password_set_textField = new JTextField();
+		password_set_textField.setColumns(10);
+		password_set_textField.setBounds(239, 7, 86, 20);
+		panel_11.add(password_set_textField);
+		
+		JPanel panel_9 = new JPanel();
+		panel_9.setLayout(null);
+		panel_9.setBounds(10, 118, 514, 35);
+		panel_passwdPolicy.add(panel_9);
+		
+		JLabel lblPasswordLengthmin = new JLabel("Password length (Min, Max)");
+		lblPasswordLengthmin.setBounds(10, 8, 195, 18);
+		panel_9.add(lblPasswordLengthmin);
+		
+		final JCheckBox pass_length_scoring = new JCheckBox("Scoring");
+		pass_length_scoring.setBounds(399, 6, 95, 23);
+		panel_9.add(pass_length_scoring);
+		
+		table_14 = new JTable();
+		table_14.setBackground(SystemColor.menu);
+		table_14.setBounds(399, 16, 0, 0);
+		panel_9.add(table_14);
+		
+		final JSpinner pass_length_min_spinner = new JSpinner();
+		pass_length_min_spinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		pass_length_min_spinner.setBounds(215, 7, 57, 20);
+		panel_9.add(pass_length_min_spinner);
+		
+		final JSpinner pass_length_max_spinner = new JSpinner();
+		pass_length_max_spinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		pass_length_max_spinner.setBounds(305, 7, 57, 20);
+		panel_9.add(pass_length_max_spinner);
+		
+		JPanel panel_13 = new JPanel();
+		panel_13.setLayout(null);
+		panel_13.setBounds(10, 159, 514, 35);
+		panel_passwdPolicy.add(panel_13);
+		
+		JLabel lblPasswordTries = new JLabel("Password Tries");
+		lblPasswordTries.setBounds(10, 8, 195, 18);
+		panel_13.add(lblPasswordTries);
+		
+		final JCheckBox pass_tries_scoring = new JCheckBox("Scoring");
+		pass_tries_scoring.setBounds(399, 6, 95, 23);
+		panel_13.add(pass_tries_scoring);
+		
+		table_18 = new JTable();
+		table_18.setBackground(SystemColor.menu);
+		table_18.setBounds(399, 16, 0, 0);
+		panel_13.add(table_18);
+		
+		final JSpinner password_tries_spinner = new JSpinner();
+		password_tries_spinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		password_tries_spinner.setBounds(260, 7, 57, 20);
+		panel_13.add(password_tries_spinner);
+		
+		JPanel panel_14 = new JPanel();
+		panel_14.setLayout(null);
+		panel_14.setBounds(10, 200, 514, 35);
+		panel_passwdPolicy.add(panel_14);
+		
+		JLabel lblPasswordExpirationdays = new JLabel("Password expiration (days)");
+		lblPasswordExpirationdays.setBounds(10, 8, 195, 18);
+		panel_14.add(lblPasswordExpirationdays);
+		
+		final JCheckBox pass_expiration_scoring = new JCheckBox("Scoring");
+		pass_expiration_scoring.setBounds(399, 6, 95, 23);
+		panel_14.add(pass_expiration_scoring);
+		
+		table_19 = new JTable();
+		table_19.setBackground(SystemColor.menu);
+		table_19.setBounds(399, 16, 0, 0);
+		panel_14.add(table_19);
+		
+		final JSpinner passwd_expr_spinner = new JSpinner();
+		passwd_expr_spinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		passwd_expr_spinner.setBounds(260, 7, 57, 20);
+		panel_14.add(passwd_expr_spinner);
+		
 		JPanel panel_misc = new JPanel();
 		panel_misc.setLayout(null);
 		panel_misc.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -792,9 +935,83 @@ public class MainUI {
 					object.mal_software_sc = false;
 				}
 				
-				pythonCall(object);
-				frame.dispose();
-				new ScoringFrame();
+				/*
+				 * CHECK FOR USER EXISTS
+				 */
+				
+				if(user_exists_checkBox.isSelected()){
+					object.check_user_exists_sc = true;
+					object.check_user_exists_setting = user_exists_textField.getText();
+				}
+				else{
+					object.check_user_exists_sc = false;
+					object.check_user_exists_setting = "null";
+				}
+				
+				/*
+				 * CHECK USER FOR PASSWORD SET
+				 */
+				
+				if(usr_password_checkBox.isSelected()){
+					object.check_user_pass_set_sc = true;
+					object.check_user_pass_set_setting = password_set_textField.getText();
+				}
+				else{
+					object.check_user_pass_set_sc = false;
+					object.check_user_pass_set_setting = "null";
+				}
+				
+				/*
+				 * CHECK PASSWORD LENGTH
+				 */
+				
+				if(pass_length_scoring.isSelected()){
+					object.passwd_length_sc = true;
+					object.passwd_length_min = (Integer)pass_length_min_spinner.getValue();
+					object.passwd_length_max = (Integer)pass_length_max_spinner.getValue();
+				}
+				else{
+					object.passwd_length_sc = false;
+					object.passwd_length_min = 0;
+					object.passwd_length_max = 0;
+				}
+				
+				/*
+				 * CHECK PASSWORD TRIES
+				 */
+				
+				if(pass_tries_scoring.isSelected()){
+					object.passwd_tries_sc = true;
+					object.passwd_tries_setting = (Integer)password_tries_spinner.getValue();
+					
+				}
+				else{
+					object.passwd_tries_sc = false;
+					object.passwd_tries_setting = 0;
+					
+				}
+				
+				/*
+				 * CHECK PASSWORD TRIES
+				 */
+				
+				if(pass_expiration_scoring.isSelected()){
+					object.passwd_expiration_sc = true;
+					object.passwd_expiration_setting = (Integer)passwd_expr_spinner.getValue();
+					
+				}
+				else{
+					object.passwd_expiration_sc = false;
+					object.passwd_expiration_setting = 0;
+					
+				}
+				
+				//pythonCall(object);
+				
+				ScoringFrame.main(null);
+				frame.setVisible(false);
+				
+				
 				//System.out.println("Scored?: " + finalScore + " Setting: " + object.ssh_service_setting);
 			}
 		});
@@ -808,6 +1025,13 @@ public class MainUI {
 	private static float finalScore = 0;
 	private static float uptime = 0;
 	private final static ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+	private JTable table_15;
+	private JTextField user_exists_textField;
+	private JTable table_16;
+	private JTextField password_set_textField;
+	private JTable table_14;
+	private JTable table_18;
+	private JTable table_19;
 	public static int checkServicesLin(currentSettings object, String pname) {
 		int score = 0;
 		try {
@@ -914,5 +1138,6 @@ public class MainUI {
 			pname += " 5 " + object.rm_usr_setting;
 		}
 		finalScore += checkServicesLin(object, pname);
+		ScoringFrame.ScoreNumber.setText("finalScore");
 	}
 }

@@ -40,4 +40,21 @@ public class currentSettings {
 	String no_files_setting;
 	
 	boolean mal_software_sc;
+	
+	boolean check_user_exists_sc;
+	String check_user_exists_setting;
+	
+	boolean check_user_pass_set_sc;
+	String check_user_pass_set_setting;
+	
+	boolean passwd_length_sc;
+	int passwd_length_min;
+	int passwd_length_max;
+	
+	boolean passwd_tries_sc;
+	int passwd_tries_setting;
+	
+	boolean passwd_expiration_sc;
+	int passwd_expiration_setting;
+	
 }
