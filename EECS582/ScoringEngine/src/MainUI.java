@@ -1006,10 +1006,12 @@ public class MainUI {
 					
 				}
 				
-				//pythonCall(object);
-				
 				ScoringFrame.main(null);
 				frame.setVisible(false);
+				
+				pythonCall(object);
+				
+				
 				
 				
 				//System.out.println("Scored?: " + finalScore + " Setting: " + object.ssh_service_setting);
