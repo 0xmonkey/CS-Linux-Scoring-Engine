@@ -294,4 +294,13 @@ while (counter < arg_length):
             q = "FALSE"
         t_string = t_string + pname + ":" + str(q) + "\n"
         counter = counter + 1
+	
+	#Config file diff checker -- Low tech version
+    elif (s_type == 8):
+	config_file_standard =  pname
+	config_file_query = str(os.sys.argv[int((counter+2))])
+	q = os.system("diff -w config_query_standard --to_file=pname")
+	counter = counter + 2
+	t_string = t_string + pname + ":" + str(q) + "\n"
+	
 print(t_string)
