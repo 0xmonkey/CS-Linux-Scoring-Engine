@@ -1123,13 +1123,33 @@ public class MainUI {
 				System.out.println("Sudo Password Status: " + resultHolder.getStatusSudoPW());
 			}
 			//System.out.println("Check users?"); //TODO: Remove debug code
-			if(!resultHolder.getStatusUsers().isEmpty() && !resultHolder.getStatusUser(object.rm_usr_setting)) {
+			if(!resultHolder.getStatusUsersExist().isEmpty() && object.rm_usr_sc) {
 				//System.out.println("Checking users"); //TODO: Remove debug code
 //				score += 1;
 //				System.out.println("Remove User " + object.rm_usr_setting + " Status: " + !resultHolder.getStatusUser(object.rm_usr_setting));
-				ArrayList<Map.Entry<String, Boolean>> users = resultHolder.getStatusUsers();
+				ArrayList<Map.Entry<String, Boolean>> users = resultHolder.getStatusUsersExist();
 				for(Entry<String, Boolean> user: users){
 					if(!user.getValue()) {
+						score += 1;
+					}
+				}
+			}
+			if(!resultHolder.getStatusUsersExist().isEmpty() && object.check_user_exists_sc) {
+				//System.out.println("Checking users"); //TODO: Remove debug code
+//				score += 1;
+//				System.out.println("Remove User " + object.rm_usr_setting + " Status: " + !resultHolder.getStatusUser(object.rm_usr_setting));
+				ArrayList<Map.Entry<String, Boolean>> users = resultHolder.getStatusUsersExist();
+				for(Entry<String, Boolean> user: users){
+					if(user.getValue()) {
+						score += 1;
+					}
+				}
+			}
+			if(!resultHolder.getStatusUsersSetpw().isEmpty() && object.check_user_pass_set_sc) {
+				//System.out.println("Checking users pw"); //TODO: Remove debug code
+				ArrayList<Map.Entry<String, Boolean>> users = resultHolder.getStatusUsersSetpw();
+				for(Entry<String, Boolean> user: users){
+					if(user.getValue()) {
 						score += 1;
 					}
 				}
@@ -1178,13 +1198,31 @@ public class MainUI {
 		if(object.sudo_pw_sc && object.sudo_pw_setting.equals("enabled")) {
 			pname += " 7";
 		}
-		if(object.rm_usr_sc && !object.rm_usr_setting.equals("")) {
-			String[] names = object.rm_usr_setting.split(",");
+		if((object.rm_usr_sc && !object.rm_usr_setting.equals(""))||(object.check_user_exists_sc && !object.check_user_exists_setting.equals(""))) {
+			String[] names1 = object.rm_usr_setting.split(",");
+			String[] names2 = object.check_user_exists_setting.split(",");
+			int length = names1.length + names2.length;
+		    String[] names = new String[length];
+		    System.arraycopy(names1, 0, names, 0, names1.length);
+		    System.arraycopy(names2, 0, names, names1.length, names2.length);
 			for(String name : names) {
 				pname += " 5 " + name.trim();
 			}
 			//pname += " 5 " + object.rm_usr_setting;
 		}
+		if(object.passwd_tries_sc) {
+			pname += " 6 " + object.passwd_tries_setting + 
+					" " + object.passwd_expiration_setting +
+					" " + object.passwd_length_max +
+					" " + object.passwd_length_min;
+		}
+		if(object.check_user_pass_set_sc && !object.check_user_pass_set_setting.equals("")) {
+			String[] names = object.check_user_pass_set_setting.split(",");
+			for(String name : names) {
+				pname += " 4 " + name.trim();
+			}
+		}
+		//System.out.println(pname); //TODO: Remove debug code
 		finalScore += checkServicesLin(object, pname);
 		ScoringFrame.ScoreNumber.setText("finalScore");
 	}
