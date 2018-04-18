@@ -296,6 +296,12 @@ while (counter < arg_length):
         counter = counter + 1
 	
 	#Config file diff checker -- Low tech version
-   	#stub until I fix it
-	
+	#pname is standard config file, arg2 is the one we are testing
+    elif (s_type == 8)
+	arg2 = str(os.sys.argv[int((counter+2))])
+	query = "./diff_engine.sh " + pname + arg2
+	q = os.system(query);
+	t_string = t_string + pname + ":" + str(q) + "\n"
+	counter = counter + 2
+
 print(t_string)
