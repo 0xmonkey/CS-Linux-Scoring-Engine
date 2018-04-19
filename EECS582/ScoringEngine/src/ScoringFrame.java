@@ -2,15 +2,26 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.ScrollPaneConstants;
+
 import java.awt.Font;
+
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import java.awt.GridLayout;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 
 public class ScoringFrame {
 
 	public static JLabel ScoreNumber;
+	public static JLabel ssh_status;
+	public static JLabel ftp_status;
+	public static JLabel www_status;
+	public static JLabel sql_status;
+	public static JLabel dns_status;
+	public static JTextArea textArea;
 	private JFrame frame;
 
 	/**
@@ -65,7 +76,7 @@ public class ScoringFrame {
 		lblService.setBounds(0, 0, 97, 32);
 		panel.add(lblService);
 		
-		JLabel ssh_status = new JLabel("N/A");
+		ssh_status = new JLabel("N/A");
 		ssh_status.setBounds(107, 0, 85, 32);
 		panel.add(ssh_status);
 		
@@ -79,7 +90,7 @@ public class ScoringFrame {
 		lblFtp.setBounds(0, 0, 97, 32);
 		panel_1.add(lblFtp);
 		
-		JLabel ftp_status = new JLabel("N/A");
+		ftp_status = new JLabel("N/A");
 		ftp_status.setBounds(107, 0, 85, 32);
 		panel_1.add(ftp_status);
 		
@@ -93,7 +104,7 @@ public class ScoringFrame {
 		lblWww.setBounds(0, 0, 97, 32);
 		panel_2.add(lblWww);
 		
-		JLabel www_status = new JLabel("N/A");
+		www_status = new JLabel("N/A");
 		www_status.setBounds(107, 0, 85, 32);
 		panel_2.add(www_status);
 		
@@ -107,7 +118,7 @@ public class ScoringFrame {
 		lblSql.setBounds(0, 0, 97, 32);
 		panel_3.add(lblSql);
 		
-		JLabel sql_status = new JLabel("N/A");
+		sql_status = new JLabel("N/A");
 		sql_status.setBounds(107, 0, 85, 32);
 		panel_3.add(sql_status);
 		
@@ -121,7 +132,7 @@ public class ScoringFrame {
 		lblDns.setBounds(0, 0, 97, 32);
 		panel_4.add(lblDns);
 		
-		JLabel dns_status = new JLabel("N/A");
+		dns_status = new JLabel("N/A");
 		dns_status.setBounds(107, 0, 85, 32);
 		panel_4.add(dns_status);
 		
@@ -130,29 +141,16 @@ public class ScoringFrame {
 		Log_title.setBounds(222, 41, 262, 27);
 		frame.getContentPane().add(Log_title);
 		
-		JPanel panel_5 = new JPanel();
-		panel_5.setBounds(222, 75, 262, 129);
-		frame.getContentPane().add(panel_5);
-		panel_5.setLayout(new GridLayout(0, 1, 0, 0));
+		textArea = new JTextArea();
+		textArea.setEditable(false);
 		
-		JLabel log_1 = new JLabel("#");
-		panel_5.add(log_1);
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		scrollPane.setBounds(222, 75, 262, 157);
+		frame.getContentPane().add(scrollPane);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		
-		JLabel log_2 = new JLabel("#");
-		panel_5.add(log_2);
-		
-		JLabel log_3 = new JLabel("#");
-		panel_5.add(log_3);
-		
-		JLabel log_4 = new JLabel("#");
-		panel_5.add(log_4);
-		
-		JLabel log_5 = new JLabel("#");
-		panel_5.add(log_5);
-		
-		JLabel log_6 = new JLabel("#");
-		panel_5.add(log_6);
-		
+		//textArea.append("Sample Text\n");
+		//use this to append the logs at the end.
 		
 	}
 }
