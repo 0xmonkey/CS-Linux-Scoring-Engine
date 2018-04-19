@@ -716,7 +716,7 @@ public class MainUI {
 		panel_7.setBounds(10, 82, 514, 35);
 		panel_misc.add(panel_7);
 		
-		JLabel lblCheckForMalicious = new JLabel("Check for Malicious Software: nmap, johntheripper, torrent clients...");
+		JLabel lblCheckForMalicious = new JLabel("Check for Anti-Malware Software");
 		lblCheckForMalicious.setBounds(10, 8, 389, 18);
 		panel_7.add(lblCheckForMalicious);
 		
@@ -1047,7 +1047,7 @@ public class MainUI {
 				ScoringFrame.main(null);
 				frame.setVisible(false);
 				
-				pythonCall(object);
+				//pythonCall(object);
 				
 			}
 		});
