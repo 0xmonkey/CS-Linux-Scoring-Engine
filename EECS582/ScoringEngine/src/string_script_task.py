@@ -297,11 +297,30 @@ while (counter < arg_length):
 	
 	#Config file diff checker -- Low tech version
 	#pname is standard config file, arg2 is the one we are testing
-    elif (s_type == 8)
+    elif (s_type == 8):
 	arg2 = str(os.sys.argv[int((counter+2))])
 	query = "./diff_engine.sh " + pname + arg2
-	q = os.system(query);
+	q = os.system(query)
 	t_string = t_string + pname + ":" + str(q) + "\n"
 	counter = counter + 2
-
+	
+    elif (s_type == 9): 
+	query = "./kernel_check.sh " + pname
+	q = os.system(query)
+	t_string = t_string + pname + ":" + str(q) + "\n"
+	counter = counter + 1
+	
+    elif (s_type == 10):
+	query = "./clam_tests.sh " + pname
+	q = os.system(query)
+	t_string = t_string + name + ":" + str(q) + "\n"
+	counter = counter + 1
+	
+    elif (s_type == 11):
+	query = "./apt_check.sh"
+	##The pname here is a dummy variable. still need to advance counter
+	q = os.system(query)
+	t_string = t_string + name + ":" + str(q) + "\n"
+	counter = counter + 1
+	
 print(t_string)
