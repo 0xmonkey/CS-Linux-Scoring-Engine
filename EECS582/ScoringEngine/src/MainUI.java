@@ -85,12 +85,13 @@ public class MainUI {
 		
 		// Get access to python script by creating a temp file from the python script within the .jar
 		// https://stackoverflow.com/questions/19010204/executing-a-batch-file-that-lives-inside-a-jar-file
-		File tmp = null;
+		File tmp = null; // Make global and handle window closed
 		try {
 			tmp = File.createTempFile("PythonScript", ".py");
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			ScoringFrame.textArea.append(e1.getMessage() + "\n");
 		}
 	    try (final ReadableByteChannel channel = Channels.newChannel(MainUI.class.getResourceAsStream("string_script_task.py"));
 	            final FileChannel fileChannel = new RandomAccessFile(tmp, "rw").getChannel()) {
@@ -103,6 +104,7 @@ public class MainUI {
 	    } catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			ScoringFrame.textArea.append(e1.getMessage() + "\n");
 		}
 	    if(tmp != null) {tmp.setExecutable(true);}
 	    path = tmp.getAbsolutePath();
@@ -115,6 +117,7 @@ public class MainUI {
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					ScoringFrame.textArea.append(e.getMessage() + "\n");
 				}
 			}
 		});
@@ -1047,7 +1050,7 @@ public class MainUI {
 				ScoringFrame.main(null);
 				frame.setVisible(false);
 				
-				//pythonCall(object);
+				pythonCall(object);
 				
 			}
 		});
@@ -1076,7 +1079,7 @@ public class MainUI {
 			String cmd = new String();
 			cmd = python + " "; // check version of installed python and what bash command to use (python, py, python3)
 			cmd += pythonScriptPath + pname;
-			//System.out.println("cmd: " + cmd); //TODO: Remove debug code
+			System.out.println("cmd: " + cmd); //TODO: Remove debug code
 		 
 			// create runtime to execute external command
 			Runtime rt = Runtime.getRuntime();
@@ -1097,30 +1100,37 @@ public class MainUI {
 			if(resultHolder.getStatusSSH()) {
 				score += 1;
 				System.out.println("SSH Status: " + resultHolder.getStatusSSH());
+				ScoringFrame.ssh_status.setText(String.valueOf(resultHolder.getStatusSSH()));
 			}
 			if(resultHolder.getStatusFTP()) {
 				score += 1;
 				System.out.println("FTP Status: " + resultHolder.getStatusFTP());
+				ScoringFrame.ftp_status.setText(String.valueOf(resultHolder.getStatusFTP()));
 			}
 			if(resultHolder.getStatusDNS()) {
 				score += 1;
 				System.out.println("DNS Status: " + resultHolder.getStatusDNS());
+				ScoringFrame.dns_status.setText(String.valueOf(resultHolder.getStatusDNS()));
 			}
 			if(resultHolder.getStatusNetcat()) {
 				score += 1;
 				System.out.println("Netcat Status: " + resultHolder.getStatusNetcat());
+				ScoringFrame.textArea.append("Netcat: " + resultHolder.getStatusNetcat()+"\n");
 			}
 			if(resultHolder.getStatusWWW()) {
 				score += 1;
 				System.out.println("WWW Status: " + resultHolder.getStatusWWW());
+				ScoringFrame.www_status.setText(String.valueOf(resultHolder.getStatusWWW()));
 			}
 			if(resultHolder.getStatusSQL()) {
 				score += 1;
 				System.out.println("SQL Status: " + resultHolder.getStatusSQL());
+				ScoringFrame.sql_status.setText(String.valueOf(resultHolder.getStatusSQL()));
 			}
 			if(resultHolder.getStatusSudoPW()) {
 				score += 1;
 				System.out.println("Sudo Password Status: " + resultHolder.getStatusSudoPW());
+				ScoringFrame.textArea.append("Sudo Users Must Use Password: " + resultHolder.getStatusSudoPW()+"\n");
 			}
 			//System.out.println("Check users?"); //TODO: Remove debug code
 			if(!resultHolder.getStatusUsersExist().isEmpty() && object.rm_usr_sc) {
@@ -1131,6 +1141,7 @@ public class MainUI {
 				for(Entry<String, Boolean> user: users){
 					if(!user.getValue()) {
 						score += 1;
+						ScoringFrame.textArea.append("User " + user + " Removed: " + !user.getValue() + "\n");
 					}
 				}
 			}
@@ -1142,6 +1153,7 @@ public class MainUI {
 				for(Entry<String, Boolean> user: users){
 					if(user.getValue()) {
 						score += 1;
+						ScoringFrame.textArea.append("User " + user + " Exist: " + user.getValue() + "\n");
 					}
 				}
 			}
@@ -1152,12 +1164,17 @@ public class MainUI {
 					if(user.getValue()) {
 						score += 1;
 					}
+					ScoringFrame.textArea.append("User " + user + " Set Password: " + user.getValue() + "\n");
 				}
 			}
 			
 			
 		} catch (IOException err) {
 			System.out.println(err.getMessage());
+			ScoringFrame.textArea.append(err.getMessage() + "\n");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			ScoringFrame.textArea.append(e.getMessage() + "\n");
 		}
 		return score;
 	}

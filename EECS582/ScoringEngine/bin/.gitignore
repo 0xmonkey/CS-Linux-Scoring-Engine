@@ -1,1 +1,4 @@
 /diff_engine.sh
+/kernel_check.sh
+/apt_check.sh
+/clam_tests.sh
