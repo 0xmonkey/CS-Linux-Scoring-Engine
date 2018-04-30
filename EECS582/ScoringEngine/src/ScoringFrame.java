@@ -8,13 +8,17 @@ import java.awt.Font;
 
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JMenuBar;
+
 import java.awt.Color;
+
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class ScoringFrame {
@@ -162,6 +166,11 @@ public class ScoringFrame {
 		menuBar.add(mnQuit);
 		
 		JMenuItem mntmQuit = new JMenuItem("Exit");
+		mntmQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
 		mnQuit.add(mntmQuit);
 		
 		//textArea.append("Sample Text\n");

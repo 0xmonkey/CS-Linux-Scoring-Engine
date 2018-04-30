@@ -50,22 +50,18 @@ public class MainUI {
 
 	private JFrame frame;
 	private JTable table;
-	private JTable table_2;
 	private JTable table_3;
 	private JTable table_4;
 	private JTable table_5;
 	private JTable table_6;
 	private JTable table_7;
 	private JTable table_8;
-	private JTable table_9;
-	private JTextField rm_sudo_usr_textBox;
 	private final ButtonGroup ssh_anon_login_group = new ButtonGroup();
 	private final ButtonGroup ssh_v_2_group = new ButtonGroup();
 	private final ButtonGroup buttonGroup_2 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_3 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_4 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_5 = new ButtonGroup();
-	private final ButtonGroup buttonGroup_6 = new ButtonGroup();
 	private JTable table_10;
 	private JTextField rm_usr_textBox;
 	private JTable table_11;
@@ -157,7 +153,7 @@ public class MainUI {
 		
 		JLabel lblValue = new JLabel("Value");
 		lblValue.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblValue.setBounds(213, 11, 46, 14);
+		lblValue.setBounds(245, 11, 46, 14);
 		panel_ssh.add(lblValue);
 		
 		JLabel lblScoring = new JLabel("Scoring");
@@ -171,7 +167,7 @@ public class MainUI {
 		ssh_service.setLayout(null);
 		
 		JLabel ssh_service_text = new JLabel("SSH Service");
-		ssh_service_text.setBounds(10, 8, 125, 18);
+		ssh_service_text.setBounds(10, 8, 160, 18);
 		ssh_service.add(ssh_service_text);
 		
 		final JCheckBox ssh_service_scoring = new JCheckBox("Scoring");
@@ -181,12 +177,12 @@ public class MainUI {
 		ButtonGroup ssh_service_group = new ButtonGroup();
 		
 		final JRadioButton ssh_service_en = new JRadioButton("Enabled");
-		ssh_service_en.setBounds(141, 6, 99, 23);
+		ssh_service_en.setBounds(176, 8, 99, 23);
 		ssh_service.add(ssh_service_en);
 		ssh_service_group.add(ssh_service_en);
 		
 		final JRadioButton ssh_service_dis = new JRadioButton("Disabled");
-		ssh_service_dis.setBounds(242, 6, 95, 23);
+		ssh_service_dis.setBounds(277, 8, 95, 23);
 		ssh_service.add(ssh_service_dis);
 		ssh_service_group.add(ssh_service_dis);
 		
@@ -201,7 +197,7 @@ public class MainUI {
 		panel_ssh.add(anon_login);
 		
 		JLabel lblAnonymousLogin = new JLabel("Anonymous Login");
-		lblAnonymousLogin.setBounds(10, 8, 125, 18);
+		lblAnonymousLogin.setBounds(10, 8, 160, 18);
 		anon_login.add(lblAnonymousLogin);
 		
 		final JCheckBox anon_login_scoring = new JCheckBox("Scoring");
@@ -210,12 +206,12 @@ public class MainUI {
 		
 		final JRadioButton anon_login_en = new JRadioButton("Enabled");
 		ssh_anon_login_group.add(anon_login_en);
-		anon_login_en.setBounds(141, 6, 99, 23);
+		anon_login_en.setBounds(176, 8, 99, 23);
 		anon_login.add(anon_login_en);
 		
 		final JRadioButton anon_login_dis = new JRadioButton("Disabled");
 		ssh_anon_login_group.add(anon_login_dis);
-		anon_login_dis.setBounds(242, 6, 95, 23);
+		anon_login_dis.setBounds(277, 8, 95, 23);
 		anon_login.add(anon_login_dis);
 		
 		table_4 = new JTable();
@@ -229,7 +225,7 @@ public class MainUI {
 		panel_ssh.add(panel);
 		
 		JLabel version_2 = new JLabel("Only SSH Version 2");
-		version_2.setBounds(10, 8, 125, 18);
+		version_2.setBounds(10, 8, 160, 18);
 		panel.add(version_2);
 		
 		final JCheckBox ssh_v2_scoring = new JCheckBox("Scoring");
@@ -238,12 +234,12 @@ public class MainUI {
 		
 		final JRadioButton ssh_v_2_en = new JRadioButton("Enabled");
 		ssh_v_2_group.add(ssh_v_2_en);
-		ssh_v_2_en.setBounds(141, 6, 99, 23);
+		ssh_v_2_en.setBounds(176, 8, 99, 23);
 		panel.add(ssh_v_2_en);
 		
 		final JRadioButton ssh_v_2_dis = new JRadioButton("Disabled");
 		ssh_v_2_group.add(ssh_v_2_dis);
-		ssh_v_2_dis.setBounds(242, 6, 95, 23);
+		ssh_v_2_dis.setBounds(277, 8, 95, 23);
 		panel.add(ssh_v_2_dis);
 		
 		table_5 = new JTable();
@@ -423,76 +419,25 @@ public class MainUI {
 		
 		JLabel label_5 = new JLabel("Value");
 		label_5.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_5.setBounds(273, 11, 46, 14);
+		label_5.setBounds(311, 11, 46, 14);
 		panel_localPolicy.add(label_5);
 		
 		JLabel label_6 = new JLabel("Scoring");
 		label_6.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_6.setBounds(415, 11, 46, 14);
+		label_6.setBounds(435, 11, 46, 14);
 		panel_localPolicy.add(label_6);
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setLayout(null);
-		panel_3.setBounds(10, 36, 514, 35);
-		panel_localPolicy.add(panel_3);
-		
-		JLabel lblSudoUsersMust = new JLabel("Sudo Users Must Use Passwords");
-		lblSudoUsersMust.setBounds(10, 8, 195, 18);
-		panel_3.add(lblSudoUsersMust);
-		
-		final JCheckBox sudo_pw_scoring = new JCheckBox("Scoring");
-		sudo_pw_scoring.setBounds(399, 6, 95, 23);
-		panel_3.add(sudo_pw_scoring);
-		
-		final JRadioButton sudo_pw_en = new JRadioButton("Enabled");
-		buttonGroup_6.add(sudo_pw_en);
-		sudo_pw_en.setBounds(211, 6, 85, 23);
-		panel_3.add(sudo_pw_en);
-		
-		final JRadioButton sudo_pw_dis = new JRadioButton("Disabled");
-		buttonGroup_6.add(sudo_pw_dis);
-		sudo_pw_dis.setBounds(298, 6, 78, 23);
-		panel_3.add(sudo_pw_dis);
-		
-		table_2 = new JTable();
-		table_2.setBackground(SystemColor.menu);
-		table_2.setBounds(399, 16, 0, 0);
-		panel_3.add(table_2);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setLayout(null);
-		panel_1.setBounds(10, 78, 514, 35);
-		panel_localPolicy.add(panel_1);
-		
-		JLabel lblUserToBe = new JLabel("User to be Removed From Sudo Group");
-		lblUserToBe.setBounds(10, 8, 275, 18);
-		panel_1.add(lblUserToBe);
-		
-		final JCheckBox rm_sudo_usr_scoring = new JCheckBox("Scoring");
-		rm_sudo_usr_scoring.setBounds(399, 6, 95, 23);
-		panel_1.add(rm_sudo_usr_scoring);
-		
-		table_9 = new JTable();
-		table_9.setBackground(SystemColor.menu);
-		table_9.setBounds(399, 16, 0, 0);
-		panel_1.add(table_9);
-		
-		rm_sudo_usr_textBox = new JTextField();
-		rm_sudo_usr_textBox.setBounds(307, 7, 86, 20);
-		panel_1.add(rm_sudo_usr_textBox);
-		rm_sudo_usr_textBox.setColumns(10);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
-		panel_4.setBounds(10, 118, 514, 35);
+		panel_4.setBounds(10, 36, 514, 35);
 		panel_localPolicy.add(panel_4);
 		
 		JLabel lblUserToBe_1 = new JLabel("User to be Removed From System");
-		lblUserToBe_1.setBounds(10, 8, 270, 18);
+		lblUserToBe_1.setBounds(10, 8, 253, 18);
 		panel_4.add(lblUserToBe_1);
 		
 		final JCheckBox rm_usr_scoring = new JCheckBox("Scoring");
-		rm_usr_scoring.setBounds(399, 6, 95, 23);
+		rm_usr_scoring.setBounds(413, 6, 95, 23);
 		panel_4.add(rm_usr_scoring);
 		
 		table_10 = new JTable();
@@ -502,28 +447,28 @@ public class MainUI {
 		
 		rm_usr_textBox = new JTextField();
 		rm_usr_textBox.setColumns(10);
-		rm_usr_textBox.setBounds(307, 7, 86, 20);
+		rm_usr_textBox.setBounds(273, 7, 86, 20);
 		panel_4.add(rm_usr_textBox);
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setLayout(null);
-		panel_5.setBounds(10, 157, 514, 35);
+		panel_5.setBounds(10, 75, 514, 35);
 		panel_localPolicy.add(panel_5);
 		
 		JLabel lblEnsureAllUsers = new JLabel("Ensure All Users Have Passwords");
-		lblEnsureAllUsers.setBounds(10, 8, 195, 18);
+		lblEnsureAllUsers.setBounds(10, 8, 235, 18);
 		panel_5.add(lblEnsureAllUsers);
 		
 		final JCheckBox all_usr_pass_scoring = new JCheckBox("Scoring");
-		all_usr_pass_scoring.setBounds(399, 6, 95, 23);
+		all_usr_pass_scoring.setBounds(413, 6, 95, 23);
 		panel_5.add(all_usr_pass_scoring);
 		
 		final JRadioButton all_usr_pass_en = new JRadioButton("Enabled");
-		all_usr_pass_en.setBounds(211, 6, 85, 23);
+		all_usr_pass_en.setBounds(246, 6, 85, 23);
 		panel_5.add(all_usr_pass_en);
 		
 		final JRadioButton all_usr_pass_dis = new JRadioButton("Disabled");
-		all_usr_pass_dis.setBounds(298, 6, 78, 23);
+		all_usr_pass_dis.setBounds(333, 6, 78, 23);
 		panel_5.add(all_usr_pass_dis);
 		
 		table_11 = new JTable();
@@ -532,7 +477,7 @@ public class MainUI {
 		panel_5.add(table_11);
 		
 		JLabel lblForMultipleUsers = new JLabel("For Multiple Users use the Format: User1,User2....");
-		lblForMultipleUsers.setBounds(10, 346, 275, 18);
+		lblForMultipleUsers.setBounds(10, 346, 436, 18);
 		panel_localPolicy.add(lblForMultipleUsers);
 		
 		JPanel panel_passwdPolicy = new JPanel();
@@ -668,7 +613,7 @@ public class MainUI {
 		panel_14.add(passwd_expr_spinner);
 		
 		JLabel label_7 = new JLabel("For Multiple Users use the Format: User1,User2....");
-		label_7.setBounds(10, 346, 275, 18);
+		label_7.setBounds(10, 346, 400, 18);
 		panel_passwdPolicy.add(label_7);
 		
 		JPanel panel_misc = new JPanel();
@@ -901,32 +846,6 @@ public class MainUI {
 				 * all sudo users must have passwords
 				 */
 				
-				if(sudo_pw_scoring.isSelected()){
-					object.sudo_pw_sc = true;
-					if(sudo_pw_en.isSelected()){
-						object.sudo_pw_setting = "enabled";
-					}
-					else if(sudo_pw_dis.isSelected()){
-						object.sudo_pw_setting = "disabled";
-					}
-				}
-				else{
-					object.sudo_pw_sc = false;
-					object.sudo_pw_setting = "null";
-				}
-				
-				/*
-				 * remove sudo user
-				 */
-				
-				if(rm_sudo_usr_scoring.isSelected() && !rm_sudo_usr_textBox.getText().equals("")){
-					object.rm_sudo_usr_sc = true;
-					object.rm_sudo_usr_setting = rm_sudo_usr_textBox.getText();
-				}
-				else{
-					object.rm_sudo_usr_sc = false;
-					object.rm_sudo_usr_setting = "null";
-				}
 				
 				/*
 				 * remove user
