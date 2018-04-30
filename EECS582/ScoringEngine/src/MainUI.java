@@ -263,7 +263,7 @@ public class MainUI {
 		
 		JLabel label_9 = new JLabel("Value");
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_9.setBounds(213, 11, 46, 14);
+		label_9.setBounds(253, 11, 46, 14);
 		panel_services.add(label_9);
 		
 		JLabel label_10 = new JLabel("Scoring");
@@ -286,12 +286,12 @@ public class MainUI {
 		
 		final JRadioButton ftp_en = new JRadioButton("Enabled");
 		buttonGroup_2.add(ftp_en);
-		ftp_en.setBounds(141, 6, 99, 23);
+		ftp_en.setBounds(183, 8, 99, 23);
 		panel_ftp.add(ftp_en);
 		
 		final JRadioButton ftp_dis = new JRadioButton("Disabled");
 		buttonGroup_2.add(ftp_dis);
-		ftp_dis.setBounds(242, 6, 95, 23);
+		ftp_dis.setBounds(284, 8, 95, 23);
 		panel_ftp.add(ftp_dis);
 		
 		table_3 = new JTable();
@@ -314,12 +314,12 @@ public class MainUI {
 		
 		final JRadioButton sql_en = new JRadioButton("Enabled");
 		buttonGroup_3.add(sql_en);
-		sql_en.setBounds(141, 6, 99, 23);
+		sql_en.setBounds(183, 8, 99, 23);
 		panel_sql.add(sql_en);
 		
 		JRadioButton sql_dis = new JRadioButton("Disabled");
 		buttonGroup_3.add(sql_dis);
-		sql_dis.setBounds(242, 6, 95, 23);
+		sql_dis.setBounds(284, 8, 95, 23);
 		panel_sql.add(sql_dis);
 		
 		table_6 = new JTable();
@@ -342,12 +342,12 @@ public class MainUI {
 		
 		final JRadioButton www_en = new JRadioButton("Enabled");
 		buttonGroup_4.add(www_en);
-		www_en.setBounds(141, 6, 99, 23);
+		www_en.setBounds(183, 8, 99, 23);
 		panel_www.add(www_en);
 		
 		final JRadioButton www_dis = new JRadioButton("Disabled");
 		buttonGroup_4.add(www_dis);
-		www_dis.setBounds(242, 6, 95, 23);
+		www_dis.setBounds(284, 8, 95, 23);
 		panel_www.add(www_dis);
 		
 		table_7 = new JTable();
@@ -370,12 +370,12 @@ public class MainUI {
 		
 		final JRadioButton dns_en = new JRadioButton("Enabled");
 		buttonGroup_5.add(dns_en);
-		dns_en.setBounds(141, 6, 99, 23);
+		dns_en.setBounds(183, 8, 99, 23);
 		panel_dns.add(dns_en);
 		
 		final JRadioButton dns_dis = new JRadioButton("Disabled");
 		buttonGroup_5.add(dns_dis);
-		dns_dis.setBounds(242, 6, 95, 23);
+		dns_dis.setBounds(284, 8, 95, 23);
 		panel_dns.add(dns_dis);
 		
 		table_8 = new JTable();
@@ -389,7 +389,7 @@ public class MainUI {
 		panel_services.add(panel_6);
 		
 		JLabel lblNetcatBackdoors = new JLabel("Netcat Backdoor Check");
-		lblNetcatBackdoors.setBounds(10, 8, 125, 18);
+		lblNetcatBackdoors.setBounds(10, 8, 167, 18);
 		panel_6.add(lblNetcatBackdoors);
 		
 		final JCheckBox netcat_scoring = new JCheckBox("Scoring");
@@ -398,12 +398,12 @@ public class MainUI {
 		
 		final JRadioButton netcat_en = new JRadioButton("Enabled");
 		buttonGroup_7.add(netcat_en);
-		netcat_en.setBounds(141, 6, 99, 23);
+		netcat_en.setBounds(183, 8, 99, 23);
 		panel_6.add(netcat_en);
 		
 		final JRadioButton netcat_dis = new JRadioButton("Disabled");
 		buttonGroup_7.add(netcat_dis);
-		netcat_dis.setBounds(242, 6, 95, 23);
+		netcat_dis.setBounds(284, 8, 95, 23);
 		panel_6.add(netcat_dis);
 		
 		table_12 = new JTable();
@@ -465,7 +465,7 @@ public class MainUI {
 		panel_localPolicy.add(panel_1);
 		
 		JLabel lblUserToBe = new JLabel("User to be Removed From Sudo Group");
-		lblUserToBe.setBounds(10, 8, 219, 18);
+		lblUserToBe.setBounds(10, 8, 275, 18);
 		panel_1.add(lblUserToBe);
 		
 		final JCheckBox rm_sudo_usr_scoring = new JCheckBox("Scoring");
@@ -478,7 +478,7 @@ public class MainUI {
 		panel_1.add(table_9);
 		
 		rm_sudo_usr_textBox = new JTextField();
-		rm_sudo_usr_textBox.setBounds(239, 7, 86, 20);
+		rm_sudo_usr_textBox.setBounds(307, 7, 86, 20);
 		panel_1.add(rm_sudo_usr_textBox);
 		rm_sudo_usr_textBox.setColumns(10);
 		
@@ -488,7 +488,7 @@ public class MainUI {
 		panel_localPolicy.add(panel_4);
 		
 		JLabel lblUserToBe_1 = new JLabel("User to be Removed From System");
-		lblUserToBe_1.setBounds(10, 8, 219, 18);
+		lblUserToBe_1.setBounds(10, 8, 270, 18);
 		panel_4.add(lblUserToBe_1);
 		
 		final JCheckBox rm_usr_scoring = new JCheckBox("Scoring");
@@ -502,7 +502,7 @@ public class MainUI {
 		
 		rm_usr_textBox = new JTextField();
 		rm_usr_textBox.setColumns(10);
-		rm_usr_textBox.setBounds(239, 7, 86, 20);
+		rm_usr_textBox.setBounds(307, 7, 86, 20);
 		panel_4.add(rm_usr_textBox);
 		
 		JPanel panel_5 = new JPanel();
@@ -530,6 +530,10 @@ public class MainUI {
 		table_11.setBackground(SystemColor.menu);
 		table_11.setBounds(399, 16, 0, 0);
 		panel_5.add(table_11);
+		
+		JLabel lblForMultipleUsers = new JLabel("For Multiple Users use the Format: User1,User2....");
+		lblForMultipleUsers.setBounds(10, 346, 275, 18);
+		panel_localPolicy.add(lblForMultipleUsers);
 		
 		JPanel panel_passwdPolicy = new JPanel();
 		panel_passwdPolicy.setLayout(null);
@@ -606,10 +610,6 @@ public class MainUI {
 		lblPasswordLengthmin.setBounds(10, 8, 195, 18);
 		panel_9.add(lblPasswordLengthmin);
 		
-		final JCheckBox pass_length_scoring = new JCheckBox("Scoring");
-		pass_length_scoring.setBounds(399, 6, 95, 23);
-		panel_9.add(pass_length_scoring);
-		
 		table_14 = new JTable();
 		table_14.setBackground(SystemColor.menu);
 		table_14.setBounds(399, 16, 0, 0);
@@ -634,8 +634,8 @@ public class MainUI {
 		lblPasswordTries.setBounds(10, 8, 195, 18);
 		panel_13.add(lblPasswordTries);
 		
-		final JCheckBox pass_tries_scoring = new JCheckBox("Scoring");
-		pass_tries_scoring.setBounds(399, 6, 95, 23);
+		final JCheckBox pass_tries_scoring = new JCheckBox("Scoring (ALL 3)");
+		pass_tries_scoring.setBounds(381, 6, 133, 23);
 		panel_13.add(pass_tries_scoring);
 		
 		table_18 = new JTable();
@@ -657,10 +657,6 @@ public class MainUI {
 		lblPasswordExpirationdays.setBounds(10, 8, 195, 18);
 		panel_14.add(lblPasswordExpirationdays);
 		
-		final JCheckBox pass_expiration_scoring = new JCheckBox("Scoring");
-		pass_expiration_scoring.setBounds(399, 6, 95, 23);
-		panel_14.add(pass_expiration_scoring);
-		
 		table_19 = new JTable();
 		table_19.setBackground(SystemColor.menu);
 		table_19.setBounds(399, 16, 0, 0);
@@ -670,6 +666,10 @@ public class MainUI {
 		passwd_expr_spinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 		passwd_expr_spinner.setBounds(260, 7, 57, 20);
 		panel_14.add(passwd_expr_spinner);
+		
+		JLabel label_7 = new JLabel("For Multiple Users use the Format: User1,User2....");
+		label_7.setBounds(10, 346, 275, 18);
+		panel_passwdPolicy.add(label_7);
 		
 		JPanel panel_misc = new JPanel();
 		panel_misc.setLayout(null);
@@ -744,6 +744,14 @@ public class MainUI {
 		
 		JMenuItem mntmSaveSettingsAnd = new JMenuItem("Save Settings And Run");
 		mnFile.add(mntmSaveSettingsAnd);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Quit");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		mnFile.add(mntmNewMenuItem);
 		mntmSaveSettingsAnd.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent ae){
@@ -1006,7 +1014,7 @@ public class MainUI {
 				 * CHECK PASSWORD LENGTH
 				 */
 				
-				if(pass_length_scoring.isSelected()){
+				if(pass_tries_scoring.isSelected()){
 					object.passwd_length_sc = true;
 					object.passwd_length_min = (Integer)pass_length_min_spinner.getValue();
 					object.passwd_length_max = (Integer)pass_length_max_spinner.getValue();
@@ -1036,7 +1044,7 @@ public class MainUI {
 				 * CHECK PASSWORD TRIES
 				 */
 				
-				if(pass_expiration_scoring.isSelected()){
+				if(pass_tries_scoring.isSelected()){
 					object.passwd_expiration_sc = true;
 					object.passwd_expiration_setting = (Integer)passwd_expr_spinner.getValue();
 					

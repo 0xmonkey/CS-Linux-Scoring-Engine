@@ -11,6 +11,10 @@ import javax.swing.SwingConstants;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JMenuBar;
+import java.awt.Color;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
 
 
 public class ScoringFrame {
@@ -52,22 +56,22 @@ public class ScoringFrame {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 510, 282);
+		frame.setBounds(100, 100, 510, 314);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblCurrentScore = new JLabel("Current Score:");
-		lblCurrentScore.setBounds(10, 10, 103, 27);
+		lblCurrentScore.setBounds(10, 29, 103, 27);
 		lblCurrentScore.setFont(new Font("Tahoma", Font.BOLD, 13));
 		frame.getContentPane().add(lblCurrentScore);
 		
 		ScoreNumber = new JLabel("#");
 		ScoreNumber.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		ScoreNumber.setBounds(123, 10, 87, 27);
+		ScoreNumber.setBounds(123, 29, 87, 27);
 		frame.getContentPane().add(ScoreNumber);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 41, 202, 32);
+		panel.setBounds(10, 59, 202, 32);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -82,7 +86,7 @@ public class ScoringFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
-		panel_1.setBounds(10, 75, 202, 32);
+		panel_1.setBounds(10, 93, 202, 32);
 		frame.getContentPane().add(panel_1);
 		
 		JLabel lblFtp = new JLabel("FTP");
@@ -96,7 +100,7 @@ public class ScoringFrame {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
-		panel_2.setBounds(10, 107, 202, 32);
+		panel_2.setBounds(10, 125, 202, 32);
 		frame.getContentPane().add(panel_2);
 		
 		JLabel lblWww = new JLabel("WWW");
@@ -110,7 +114,7 @@ public class ScoringFrame {
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
-		panel_3.setBounds(10, 139, 202, 32);
+		panel_3.setBounds(10, 157, 202, 32);
 		frame.getContentPane().add(panel_3);
 		
 		JLabel lblSql = new JLabel("SQL");
@@ -124,7 +128,7 @@ public class ScoringFrame {
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
-		panel_4.setBounds(10, 172, 202, 32);
+		panel_4.setBounds(10, 190, 202, 32);
 		frame.getContentPane().add(panel_4);
 		
 		JLabel lblDns = new JLabel("DNS");
@@ -138,16 +142,27 @@ public class ScoringFrame {
 		
 		JLabel Log_title = new JLabel("<html>You will see updates for all other scores here!<br>Newest updates will be at the bottom.</html>");
 		Log_title.setHorizontalAlignment(SwingConstants.LEFT);
-		Log_title.setBounds(222, 41, 262, 27);
+		Log_title.setBounds(222, 59, 262, 27);
 		frame.getContentPane().add(Log_title);
 		
 		textArea = new JTextArea();
 		textArea.setEditable(false);
 		
 		JScrollPane scrollPane = new JScrollPane(textArea);
-		scrollPane.setBounds(222, 75, 262, 157);
+		scrollPane.setBounds(222, 93, 262, 157);
 		frame.getContentPane().add(scrollPane);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setForeground(Color.BLACK);
+		menuBar.setBounds(0, 0, 80, 21);
+		frame.getContentPane().add(menuBar);
+		
+		JMenu mnQuit = new JMenu("Exit                         ");
+		menuBar.add(mnQuit);
+		
+		JMenuItem mntmQuit = new JMenuItem("Exit");
+		mnQuit.add(mntmQuit);
 		
 		//textArea.append("Sample Text\n");
 		//use this to append the logs at the end.

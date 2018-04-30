@@ -82,15 +82,12 @@ def check_user_exists(userName: str) -> bool:
 def check_password_policy(changeTries: int=None, maxDays: int=None, maxLen: int=None, minLen: int=None) -> bool:
     '''
     Checks if passwords policy is enforced
-
     Scrubs the /etc/login.defs file for parameters:
     [
         PASS_CHANGE_TRIES, PASS_MAX_DAYS,
         PASS_MAX_LEN, PASS_MIN_LEN
     ]
-
     User can set values for these parameters to match
-
     Parameters
     ----------
     changeTries : int
@@ -106,7 +103,6 @@ def check_password_policy(changeTries: int=None, maxDays: int=None, maxLen: int=
     minLen : int
         DEFAULT = None
         Represents minimum length of new passwords
-
     Returns
     -------
     bool
@@ -154,9 +150,7 @@ def check_password_policy(changeTries: int=None, maxDays: int=None, maxLen: int=
 
     '''
     Translates lines[] into a dictionary
-
     Example lines[] state is ['PASS_MAX_DAYS\t9999\n']
-
     Translated sample: {'PASS_MAX_DAYS': '9999'}
     '''
     for entry in lines:
@@ -177,15 +171,12 @@ def check_password_policy(changeTries: int=None, maxDays: int=None, maxLen: int=
 def check_sudo_user_password() -> bool:
     '''
     Function checks if sudo users are set to require passwords
-
     Searches the /etc/sudoers file for the entry 'NOPASSWD'
     If this setting exists in the file, then that means a sudo user
     will be able to execute sudo commands without having to use a password
-
     Parameters
     ----------
     None
-
     Returns
     -------
     bool
@@ -297,11 +288,30 @@ while (counter < arg_length):
 	
 	#Config file diff checker -- Low tech version
 	#pname is standard config file, arg2 is the one we are testing
-    elif (s_type == 8)
-	arg2 = str(os.sys.argv[int((counter+2))])
-	query = "./diff_engine.sh " + pname + arg2
-	q = os.system(query);
-	t_string = t_string + pname + ":" + str(q) + "\n"
-	counter = counter + 2
-
+    elif (s_type == 8):
+        arg2 = str(os.sys.argv[int((counter + 2))])
+        query = "./diff_engine.sh " + pname + arg2
+        q = os.system(query)
+        t_string = t_string + pname + ":" + str(q) + "\n"
+        counter = counter + 2
+	
+    elif (s_type == 9): 
+        query = "./kernel_check.sh " + pname
+        q = os.system(query)
+        t_string = t_string + pname + ":" + str(q) + "\n"
+        counter = counter + 1
+	
+    elif (s_type == 10):
+        query = "./clam_tests.sh " + pname
+        q = os.system(query)
+        t_string = t_string + name + ":" + str(q) + "\n"
+        counter = counter + 1
+	
+    elif (s_type == 11):
+        query = "./apt_check.sh"
+	##The pname here is a dummy variable. still need to advance counter
+        q = os.system(query)
+        t_string = t_string + name + ":" + str(q) + "\n"
+        counter = counter + 1
+	
 print(t_string)
