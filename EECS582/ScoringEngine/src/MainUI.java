@@ -919,7 +919,7 @@ public class MainUI {
 				 * remove sudo user
 				 */
 				
-				if(rm_sudo_usr_scoring.isSelected()){
+				if(rm_sudo_usr_scoring.isSelected() && !rm_sudo_usr_textBox.getText().equals("")){
 					object.rm_sudo_usr_sc = true;
 					object.rm_sudo_usr_setting = rm_sudo_usr_textBox.getText();
 				}
@@ -932,7 +932,7 @@ public class MainUI {
 				 * remove user
 				 */
 				
-				if(rm_usr_scoring.isSelected()){
+				if(rm_usr_scoring.isSelected() && !rm_usr_textBox.getText().equals("")){
 					object.rm_usr_sc = true;
 					object.rm_usr_setting = rm_usr_textBox.getText();
 				}
@@ -963,7 +963,7 @@ public class MainUI {
 				 * NO FILES OF SPECIFIED TYPE
 				 */
 				
-				if(no_files_scoring.isSelected()){
+				if(no_files_scoring.isSelected() && !no_files_textBox.getText().equals("")){
 					object.no_files_sc = true;
 					object.no_files_setting = no_files_textBox.getText();
 				}
@@ -988,7 +988,7 @@ public class MainUI {
 				 * CHECK FOR USER EXISTS
 				 */
 				
-				if(user_exists_checkBox.isSelected()){
+				if(user_exists_checkBox.isSelected() && !user_exists_textField.getText().equals("")){
 					object.check_user_exists_sc = true;
 					object.check_user_exists_setting = user_exists_textField.getText();
 				}
@@ -1001,7 +1001,7 @@ public class MainUI {
 				 * CHECK USER FOR PASSWORD SET
 				 */
 				
-				if(usr_password_checkBox.isSelected()){
+				if(usr_password_checkBox.isSelected() && !password_set_textField.getText().equals("")){
 					object.check_user_pass_set_sc = true;
 					object.check_user_pass_set_setting = password_set_textField.getText();
 				}
@@ -1081,13 +1081,18 @@ public class MainUI {
 	private JTable table_19;
 	public static int checkServicesLin(currentSettings object, String pname) {
 		int score = 0;
+		ScoringFrame.ssh_status.setText("false");
+		ScoringFrame.dns_status.setText("false");
+		ScoringFrame.ftp_status.setText("false");
+		ScoringFrame.sql_status.setText("false");
+		ScoringFrame.www_status.setText("false");
 		try {
 			String pythonScriptPath = path; // need installer to determine locations
 			//System.out.println(path); //TODO: Remove debug code
 			String cmd = new String();
 			cmd = python + " "; // check version of installed python and what bash command to use (python, py, python3)
 			cmd += pythonScriptPath + pname;
-			System.out.println("cmd: " + cmd); //TODO: Remove debug code
+			//System.out.println("cmd: " + cmd); //TODO: Remove debug code
 		 
 			// create runtime to execute external command
 			Runtime rt = Runtime.getRuntime();
@@ -1175,7 +1180,7 @@ public class MainUI {
 					ScoringFrame.textArea.append("User " + user + " Set Password: " + user.getValue() + "\n");
 				}
 			}
-			
+			pr.destroy();
 			
 		} catch (IOException err) {
 			System.out.println(err.getMessage());
