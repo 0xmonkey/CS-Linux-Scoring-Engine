@@ -65,13 +65,13 @@ public class ScoringFrame {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblCurrentScore = new JLabel("Current Score:");
-		lblCurrentScore.setBounds(10, 29, 103, 27);
+		lblCurrentScore.setBounds(10, 29, 162, 27);
 		lblCurrentScore.setFont(new Font("Tahoma", Font.BOLD, 13));
 		frame.getContentPane().add(lblCurrentScore);
 		
 		ScoreNumber = new JLabel("#");
 		ScoreNumber.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		ScoreNumber.setBounds(123, 29, 87, 27);
+		ScoreNumber.setBounds(182, 29, 87, 27);
 		frame.getContentPane().add(ScoreNumber);
 		
 		JPanel panel = new JPanel();
