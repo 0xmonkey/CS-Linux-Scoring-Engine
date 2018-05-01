@@ -1129,8 +1129,8 @@ public class MainUI {
 				ScoringFrame.ftp_status.setText(String.valueOf(resultHolder.getStatusFTP()));
 				ScoringFrame.sql_status.setText(String.valueOf(resultHolder.getStatusSQL()));
 				ScoringFrame.www_status.setText(String.valueOf(resultHolder.getStatusWWW()));
-				ScoringFrame.textArea.append("Netcat: " + resultHolder.getStatusNetcat()+"\n");
-				ScoringFrame.textArea.append("Sudo Users Must Use Password: " + resultHolder.getStatusSudoPW()+"\n");
+				if(object.netcat_backdoor_sc){ScoringFrame.textArea.append("Netcat: " + resultHolder.getStatusNetcat()+"\n");}
+				if(object.sudo_pw_sc){ScoringFrame.textArea.append("Sudo Users Must Use Password: " + resultHolder.getStatusSudoPW()+"\n");}
 				if(!resultHolder.getStatusUsersExist().isEmpty() && object.rm_usr_sc) {
 					ArrayList<Map.Entry<String, Boolean>> users = resultHolder.getStatusUsersExist();
 					for(Entry<String, Boolean> user: users){
