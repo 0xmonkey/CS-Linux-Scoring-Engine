@@ -1000,11 +1000,11 @@ public class MainUI {
 	private JTable table_19;
 	public static int checkServicesLin(currentSettings object, String pname) {
 		int score = 0;
-		ScoringFrame.ssh_status.setText("false");
-		ScoringFrame.dns_status.setText("false");
-		ScoringFrame.ftp_status.setText("false");
-		ScoringFrame.sql_status.setText("false");
-		ScoringFrame.www_status.setText("false");
+//		ScoringFrame.ssh_status.setText("false");
+//		ScoringFrame.dns_status.setText("false");
+//		ScoringFrame.ftp_status.setText("false");
+//		ScoringFrame.sql_status.setText("false");
+//		ScoringFrame.www_status.setText("false");
 		try {
 			String pythonScriptPath = path; // need installer to determine locations
 			//System.out.println(path); //TODO: Remove debug code
@@ -1032,37 +1032,37 @@ public class MainUI {
 			if(resultHolder.getStatusSSH()) {
 				score += 1;
 				System.out.println("SSH Status: " + resultHolder.getStatusSSH());
-				ScoringFrame.ssh_status.setText(String.valueOf(resultHolder.getStatusSSH()));
+				//ScoringFrame.ssh_status.setText(String.valueOf(resultHolder.getStatusSSH()));
 			}
 			if(resultHolder.getStatusFTP()) {
 				score += 1;
 				System.out.println("FTP Status: " + resultHolder.getStatusFTP());
-				ScoringFrame.ftp_status.setText(String.valueOf(resultHolder.getStatusFTP()));
+				//ScoringFrame.ftp_status.setText(String.valueOf(resultHolder.getStatusFTP()));
 			}
 			if(resultHolder.getStatusDNS()) {
 				score += 1;
 				System.out.println("DNS Status: " + resultHolder.getStatusDNS());
-				ScoringFrame.dns_status.setText(String.valueOf(resultHolder.getStatusDNS()));
+				//ScoringFrame.dns_status.setText(String.valueOf(resultHolder.getStatusDNS()));
 			}
 			if(resultHolder.getStatusNetcat()) {
 				score += 1;
 				System.out.println("Netcat Status: " + resultHolder.getStatusNetcat());
-				ScoringFrame.textArea.append("Netcat: " + resultHolder.getStatusNetcat()+"\n");
+				//ScoringFrame.textArea.append("Netcat: " + resultHolder.getStatusNetcat()+"\n");
 			}
 			if(resultHolder.getStatusWWW()) {
 				score += 1;
 				System.out.println("WWW Status: " + resultHolder.getStatusWWW());
-				ScoringFrame.www_status.setText(String.valueOf(resultHolder.getStatusWWW()));
+				//ScoringFrame.www_status.setText(String.valueOf(resultHolder.getStatusWWW()));
 			}
 			if(resultHolder.getStatusSQL()) {
 				score += 1;
 				System.out.println("SQL Status: " + resultHolder.getStatusSQL());
-				ScoringFrame.sql_status.setText(String.valueOf(resultHolder.getStatusSQL()));
+				//ScoringFrame.sql_status.setText(String.valueOf(resultHolder.getStatusSQL()));
 			}
 			if(resultHolder.getStatusSudoPW()) {
 				score += 1;
 				System.out.println("Sudo Password Status: " + resultHolder.getStatusSudoPW());
-				ScoringFrame.textArea.append("Sudo Users Must Use Password: " + resultHolder.getStatusSudoPW()+"\n");
+				//ScoringFrame.textArea.append("Sudo Users Must Use Password: " + resultHolder.getStatusSudoPW()+"\n");
 			}
 			//System.out.println("Check users?"); //TODO: Remove debug code
 			if(!resultHolder.getStatusUsersExist().isEmpty() && object.rm_usr_sc) {
@@ -1073,7 +1073,7 @@ public class MainUI {
 				for(Entry<String, Boolean> user: users){
 					if(!user.getValue()) {
 						score += 1;
-						ScoringFrame.textArea.append("User " + user + " Removed: " + !user.getValue() + "\n");
+						//ScoringFrame.textArea.append("User " + user + " Removed: " + !user.getValue() + "\n");
 					}
 				}
 			}
@@ -1085,7 +1085,7 @@ public class MainUI {
 				for(Entry<String, Boolean> user: users){
 					if(user.getValue()) {
 						score += 1;
-						ScoringFrame.textArea.append("User " + user + " Exist: " + user.getValue() + "\n");
+						//ScoringFrame.textArea.append("User " + user + " Exist: " + user.getValue() + "\n");
 					}
 				}
 			}
@@ -1096,7 +1096,7 @@ public class MainUI {
 					if(user.getValue()) {
 						score += 1;
 					}
-					ScoringFrame.textArea.append("User " + user + " Set Password: " + user.getValue() + "\n");
+					//ScoringFrame.textArea.append("User " + user + " Set Password: " + user.getValue() + "\n");
 				}
 			}
 			pr.destroy();
@@ -1112,16 +1112,56 @@ public class MainUI {
 	}
 	@SuppressWarnings("unused")
 	public static void pythonCall(final currentSettings object) {
+		
 		final Runnable pythonCaller = new Runnable() {
-			public void run() { 
+			public void run() {
+				// Initialize labels
+//				ScoringFrame.ssh_status.setText("false");
+//				ScoringFrame.dns_status.setText("false");
+//				ScoringFrame.ftp_status.setText("false");
+//				ScoringFrame.sql_status.setText("false");
+//				ScoringFrame.www_status.setText("false");
 				// Call python script and output the score
 				pythonCallManual(object);
 				ScoringFrame.ScoreNumber.setText((String.format("%.2f", finalScore/++uptime))); //TODO: Edit score output text
+				ScoringFrame.ssh_status.setText(String.valueOf(resultHolder.getStatusSSH()));
+				ScoringFrame.dns_status.setText(String.valueOf(resultHolder.getStatusDNS()));
+				ScoringFrame.ftp_status.setText(String.valueOf(resultHolder.getStatusFTP()));
+				ScoringFrame.sql_status.setText(String.valueOf(resultHolder.getStatusSQL()));
+				ScoringFrame.www_status.setText(String.valueOf(resultHolder.getStatusWWW()));
+				ScoringFrame.textArea.append("Netcat: " + resultHolder.getStatusNetcat()+"\n");
+				ScoringFrame.textArea.append("Sudo Users Must Use Password: " + resultHolder.getStatusSudoPW()+"\n");
+				if(!resultHolder.getStatusUsersExist().isEmpty() && object.rm_usr_sc) {
+					ArrayList<Map.Entry<String, Boolean>> users = resultHolder.getStatusUsersExist();
+					for(Entry<String, Boolean> user: users){
+						if(!user.getValue()) {
+							ScoringFrame.textArea.append("User " + user + " Removed: " + !user.getValue() + "\n");
+						}
+					}
+				}
+				if(!resultHolder.getStatusUsersExist().isEmpty() && object.check_user_exists_sc) {
+					ArrayList<Map.Entry<String, Boolean>> users = resultHolder.getStatusUsersExist();
+					for(Entry<String, Boolean> user: users){
+						if(user.getValue()) {
+							ScoringFrame.textArea.append("User " + user + " Exist: " + user.getValue() + "\n");
+						}
+					}
+				}
+				if(!resultHolder.getStatusUsersSetpw().isEmpty() && object.check_user_pass_set_sc) {
+					ArrayList<Map.Entry<String, Boolean>> users = resultHolder.getStatusUsersSetpw();
+					for(Entry<String, Boolean> user: users){
+						if(user.getValue()) {
+							ScoringFrame.textArea.append("User " + user + " Set Password: " + user.getValue() + "\n");
+						}
+						
+					}
+				}
+				ScoringFrame.textArea.append("---\n");
 				//System.out.println(path); //TODO: Remove debug code
 			}
 		};
 		//Set interval to call script
-		final ScheduledFuture<?> pythonCallerHandle = scheduler.scheduleAtFixedRate(pythonCaller, -1, 30, TimeUnit.SECONDS);
+		final ScheduledFuture<?> pythonCallerHandle = scheduler.scheduleAtFixedRate(pythonCaller, -1, 5, TimeUnit.SECONDS);
 	}
 	public static void pythonCallManual(currentSettings object) {
 		//TODO: Add services to check here
